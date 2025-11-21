@@ -4,27 +4,27 @@ import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui';
 import Image from 'next/image';
 import { siteContent } from '@/data/content';
+import { getResponsiveBackgroundStyle } from '@/lib/responsive-background';
 
 const MotionDiv = dynamic(() => import('framer-motion').then(mod => mod.motion.div), { ssr: false });
 
 export function ContactCTA() {
   const { contactCTA } = siteContent;
+  const backgroundStyle = getResponsiveBackgroundStyle(
+    contactCTA.background.image,
+    contactCTA.background.variants
+  );
   
   return (
-    <section className="relative h-[35vh] min-h-[300px] flex items-center justify-center text-eggshell overflow-hidden">
+      <section className="relative h-[35vh] min-h-[300px] flex items-center justify-center text-eggshell overflow-hidden">
       {/* Background image with overlay */}
-      <div className="absolute inset-0">
-        <Image
-          src={contactCTA.background.image}
-          alt={contactCTA.background.alt}
-          fill
-          className="object-cover object-center"
-          priority
-          sizes="100vw"
+        <div
+          className="absolute inset-0 responsive-bg"
+          style={backgroundStyle}
+          aria-hidden="true"
         />
         {/* Dark overlay for text legibility */}
-        <div className="absolute inset-0 bg-black/50" />
-      </div>
+        <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
@@ -41,7 +41,6 @@ export function ContactCTA() {
             width={180}
             height={45}
             className="w-auto max-w-xs"
-            priority={false}
           />
           
           <MotionDiv

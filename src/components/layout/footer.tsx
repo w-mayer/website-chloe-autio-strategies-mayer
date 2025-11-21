@@ -31,7 +31,6 @@ export function Footer() {
               width={32}
               height={32}
               className="opacity-80"
-              priority
             />
           </div>
           <p className="text-center text-sm leading-loose md:text-left" style={{ color: '#434344', fontFamily: 'DM Sans, Arial, Helvetica, sans-serif' }}>

@@ -1,29 +1,29 @@
 'use client';
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { Button, AuthorityHeading, ContentErrorBoundary, OptimizedImage } from '@/components/ui';
+import { Button, AuthorityHeading, ContentErrorBoundary } from '@/components/ui';
 import { homeContent } from '@/data/pages/home';
+import { getResponsiveBackgroundStyle } from '@/lib/responsive-background';
 
 const MotionP = dynamic(() => import('framer-motion').then(mod => mod.motion.p), { ssr: false });
 const MotionDiv = dynamic(() => import('framer-motion').then(mod => mod.motion.div), { ssr: false });
 
 function HeroContent() {
+  const backgroundStyle = getResponsiveBackgroundStyle(
+    homeContent.hero.background.image,
+    homeContent.hero.background.variants
+  );
+
   return (
     <section className="hero-section relative h-[35vh] min-h-[300px] flex items-center justify-center overflow-hidden bg-paynesGray">
       {/* Background image */}
-      <div className="absolute inset-0">
-        <OptimizedImage
-          src={homeContent.hero.background.image}
-          alt={homeContent.hero.background.alt}
-          fill
-          className="object-cover object-center"
-          priority
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-          quality={85}
-        />
-        {/* Dark overlay for text legibility */}
-        <div className="absolute inset-0 bg-black/50" />
-      </div>
+      <div
+        className="absolute inset-0 responsive-bg"
+        style={backgroundStyle}
+        aria-hidden="true"
+      />
+      {/* Dark overlay for text legibility */}
+      <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
       {/* Brand green accent bar at the top */}
       <div className="absolute top-0 left-0 w-full h-2 bg-primary z-10" />
       {/* Content */}

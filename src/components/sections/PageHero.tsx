@@ -1,7 +1,7 @@
 'use client';
 import { AuthorityHeading } from '@/components/ui';
-import Image from 'next/image';
 import { getPageHero } from '@/lib/utils';
+import { getResponsiveBackgroundStyle } from '@/lib/responsive-background';
 
 interface PageHeroProps {
   pageName: 'home' | 'about' | 'services' | 'resources' | 'insights' | 'contact';
@@ -23,26 +23,32 @@ export function PageHero({
   const hero = getPageHero(pageName);
   const displayTitle = title || hero.title;
   const displaySubtitle = subtitle || ('subtitle' in hero ? (hero.subtitle as string) : undefined);
+  const backgroundStyle =
+    hero.background && 'image' in hero.background
+      ? getResponsiveBackgroundStyle(
+          hero.background.image,
+          'variants' in hero.background ? hero.background.variants : undefined
+        )
+      : undefined;
 
   return (
     <section className={className}>
       {/* Background image or solid color */}
-      {hero.background && 'image' in hero.background && hero.background.image ? (
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={hero.background.image}
-            alt={hero.background.alt}
-            fill
-            className="object-cover"
-            style={{ objectPosition }}
-            priority={true}
-            quality={90}
-            sizes="100vw"
-          />
-          {/* Dark overlay for text legibility */}
-          <div className={`absolute inset-0 bg-black/${overlayOpacity} z-10`} />
-        </div>
-      ) : (
+        {hero.background && 'image' in hero.background && hero.background.image ? (
+          <>
+            <div
+              className="absolute inset-0 z-0 responsive-bg"
+              style={
+                backgroundStyle
+                  ? { ...backgroundStyle, backgroundPosition: objectPosition }
+                  : { backgroundPosition: objectPosition }
+              }
+              aria-hidden="true"
+            />
+            {/* Dark overlay for text legibility */}
+            <div className={`absolute inset-0 bg-black/${overlayOpacity} z-10`} aria-hidden="true" />
+          </>
+        ) : (
         // Solid primary green background for privacy page
         <div className="absolute inset-0 z-0 bg-primary" />
       )}

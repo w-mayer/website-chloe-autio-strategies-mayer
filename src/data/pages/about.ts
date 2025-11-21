@@ -4,6 +4,11 @@ export const aboutContent = {
     background: {
       image: '/images/stocks/optimized/about.webp',
       alt: 'About Autio Strategies background',
+      variants: {
+        small: '/images/stocks/optimized/about-small.webp',
+        medium: '/images/stocks/optimized/about-medium.webp',
+        large: '/images/stocks/optimized/about-large.webp',
+      },
     },
   },
   body: {

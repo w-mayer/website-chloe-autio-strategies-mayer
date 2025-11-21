@@ -39,7 +39,6 @@ export function Header() {
             width={138}
             height={40}
             className="block"
-            priority={true}
           />
         </a>
         

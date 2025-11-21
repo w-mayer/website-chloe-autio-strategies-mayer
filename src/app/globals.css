@@ -109,6 +109,26 @@ body {
       min-width: 44px;
     }
   }
+
+.responsive-bg {
+  background-image: var(--bg-large, var(--bg-medium, var(--bg-small)));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+  .responsive-bg {
+    background-image: var(--bg-medium, var(--bg-small, var(--bg-large)));
+  }
+}
+
+@media (max-width: 640px) {
+  .responsive-bg {
+    background-image: var(--bg-small, var(--bg-medium, var(--bg-large)));
+  }
+}
   
   /* Enhanced navbar visibility */
   .navbar-enhanced {

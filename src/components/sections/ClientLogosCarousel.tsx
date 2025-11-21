@@ -92,7 +92,6 @@ function LogoCard({ logo, index }: LogoCardProps) {
           : 'object-contain'
         } hover:opacity-80 transition-all duration-300`}
         style={{ objectPosition: 'center' }}
-        priority={index < 4}
       />
     </motion.div>
   );
