@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { PageTransition } from "@/components/layout/PageTransition";
 import { ErrorBoundary } from "@/components/ui";
 import { siteMetadata } from "@/data/metadata";
 
@@ -77,17 +76,15 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <ErrorBoundary>
-          <div className="relative flex min-h-screen flex-col">
-            <Header />
-            <PageTransition>
+          <ErrorBoundary>
+            <div className="relative flex min-h-screen flex-col">
+              <Header />
               <main id="main-content" role="main" tabIndex={-1} className="flex-1 focus:outline-none">
                 {children}
               </main>
-            </PageTransition>
-            <Footer />
-          </div>
-        </ErrorBoundary>
+              <Footer />
+            </div>
+          </ErrorBoundary>
       </body>
     </html>
   );

@@ -1,4 +1,3 @@
-'use client';
 import { AuthorityHeading } from '@/components/ui';
 import { getPageHero } from '@/lib/utils';
 import { getResponsiveBackgroundStyle } from '@/lib/responsive-background';
