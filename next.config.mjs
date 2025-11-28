@@ -4,6 +4,11 @@ const nextConfig = {
   output: 'export',
   trailingSlash: true,
   
+  // Enable CSS optimization to inline critical CSS and defer non-critical CSS
+  experimental: {
+    optimizeCss: true,
+  },
+  
   // Image configuration for static export with WebP optimization
   images: {
     unoptimized: true,
