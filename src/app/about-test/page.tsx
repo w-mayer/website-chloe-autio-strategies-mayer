@@ -320,7 +320,141 @@ export default function AboutTestPage() {
       </section>
 
       {/* CTA for Layout 2 */}
-      <section className="text-center py-8">
+      <section className="text-center py-8 border-b-4 border-slate-200">
+        <h2 className="text-2xl font-bold text-primary mb-4 heading">{cta.title}</h2>
+        <p className="text-lg text-gray dark:text-paynesGray mb-6 max-w-2xl mx-auto body-text">
+          {cta.description}
+        </p>
+        <a
+          href={cta.button.href}
+          className="btn-primary btn-primary-cta inline-block mb-8"
+          aria-label={`${cta.button.text} with Autio Strategies Team`}
+        >
+          {cta.button.text}
+        </a>
+      </section>
+
+      {/* Divider between layouts */}
+      <div className="py-12 bg-white text-center">
+        <div className="container mx-auto px-4">
+          <div className="border-t-2 border-dashed border-gray-300 pt-8">
+            <p className="text-gray-500 text-lg">Alternative Layout Below</p>
+          </div>
+        </div>
+      </div>
+
+      {/* ============================================ */}
+      {/* LAYOUT 3: Side-by-Side Stacked */}
+      {/* ============================================ */}
+      <section className="bg-slate-50 py-16">
+        <div className="container mx-auto px-4">
+          {/* Layout Label */}
+          <div className="text-center mb-12">
+            <div className="inline-block bg-primary text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
+              Layout 3: Side-by-Side Stacked
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary heading">
+              {teamSection.title}
+            </h2>
+          </div>
+
+          {/* Stacked Team Members */}
+          <div className="max-w-5xl mx-auto space-y-16">
+            {/* Chloe Autio Row */}
+            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start" itemScope itemType="https://schema.org/Person">
+              {/* Chloe Headshot */}
+              <div className="flex-shrink-0">
+                <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-lg overflow-hidden shadow-lg bg-white">
+                  <Image
+                    src={team.chloe.image.src}
+                    alt={team.chloe.image.alt}
+                    fill
+                    className="object-cover"
+                    priority={true}
+                    quality={90}
+                    sizes="(max-width: 768px) 256px, 288px"
+                  />
+                </div>
+              </div>
+              
+              {/* Chloe Bio */}
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2 heading" itemProp="name">
+                  {team.chloe.name}
+                </h3>
+                <p className="text-lg text-primary-600 mb-4 body-text" itemProp="jobTitle">
+                  {team.chloe.title}
+                </p>
+                <p className="text-base text-gray dark:text-paynesGray mb-4 body-text" itemProp="description">
+                  {team.chloe.description}
+                </p>
+                {team.chloe.bio && (
+                  <p className="text-base text-gray dark:text-paynesGray body-text">
+                    {team.chloe.bio}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* Samuel Wells Row */}
+            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start" itemScope itemType="https://schema.org/Person">
+              {/* Samuel Headshot */}
+              <div className="flex-shrink-0">
+                <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-lg overflow-hidden shadow-lg bg-white">
+                  <Image
+                    src={team.samuel.image.src}
+                    alt={team.samuel.image.alt}
+                    fill
+                    className="object-cover"
+                    priority={true}
+                    quality={90}
+                    sizes="(max-width: 768px) 256px, 288px"
+                  />
+                </div>
+              </div>
+              
+              {/* Samuel Bio */}
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2 heading" itemProp="name">
+                  {team.samuel.name}
+                </h3>
+                <p className="text-lg text-primary-600 mb-4 body-text" itemProp="jobTitle">
+                  {team.samuel.title}
+                </p>
+                <p className="text-base text-gray dark:text-paynesGray body-text" itemProp="description">
+                  {team.samuel.description}
+                </p>
+              </div>
+            </div>
+
+            {/* New Team Member Row */}
+            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start" itemScope itemType="https://schema.org/Person">
+              {/* New Member Headshot (Placeholder) */}
+              <div className="flex-shrink-0">
+                <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-lg overflow-hidden shadow-lg bg-white">
+                  <PlaceholderImage alt={team.newMember.image.alt} />
+                </div>
+              </div>
+              
+              {/* New Member Bio */}
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2 heading" itemProp="name">
+                  {team.newMember.name}
+                </h3>
+                <p className="text-lg text-primary-600 mb-4 body-text" itemProp="jobTitle">
+                  {team.newMember.title}
+                </p>
+                <p className="text-base text-gray dark:text-paynesGray body-text" itemProp="description">
+                  {team.newMember.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA for Layout 3 */}
+      <section className="text-center py-8 bg-slate-50">
         <h2 className="text-2xl font-bold text-primary mb-4 heading">{cta.title}</h2>
         <p className="text-lg text-gray dark:text-paynesGray mb-6 max-w-2xl mx-auto body-text">
           {cta.description}

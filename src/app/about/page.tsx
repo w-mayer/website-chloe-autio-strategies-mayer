@@ -5,6 +5,24 @@ import Image from 'next/image';
 import { aboutContent } from '@/data/pages/about';
 import { siteMetadata } from '@/data/metadata';
 
+// Placeholder component for team member without image
+function PlaceholderImage({ alt }: { alt: string }) {
+  return (
+    <div 
+      className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center"
+      aria-label={alt}
+    >
+      <svg 
+        className="w-24 h-24 text-gray-400" 
+        fill="currentColor" 
+        viewBox="0 0 24 24"
+      >
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+      </svg>
+    </div>
+  );
+}
+
 export const metadata: Metadata = {
   title: siteMetadata.pages.about.title,
   description: siteMetadata.pages.about.description,
@@ -64,7 +82,7 @@ export default function AboutPage() {
       </section>
 
       {/* Body Text Section */}
-      <section className="container mx-auto px-4 py-12">
+      <section className="container mx-auto px-4 pt-12 pb-6">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-8 heading">
             {body.title}
@@ -75,89 +93,113 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Section Header */}
-      <section className="container mx-auto px-4">
-        <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4 heading">
-            {teamSection.title}
-          </h2>
-        </div>
-      </section>
-
-      {/* Team Members */}
-      <section className="container mx-auto px-4 py-8">
-        {/* Images Row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {/* Chloe Autio Image */}
-          <div className="flex justify-center">
-            <div 
-              className="relative w-full max-w-md rounded-lg overflow-hidden shadow-lg bg-white"
-              style={{ aspectRatio: '5/4' }}
-            >
-              <Image
-                src={team.chloe.image.src}
-                alt={team.chloe.image.alt}
-                fill
-                className="object-cover"
-                priority={true}
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 448px"
-              />
-            </div>
-          </div>
-          
-          {/* Samuel Wells Image */}
-          <div className="flex justify-center">
-            <div 
-              className="relative w-full max-w-md rounded-lg overflow-hidden shadow-lg bg-white"
-              style={{ aspectRatio: '5/4' }}
-            >
-              <Image
-                src={team.samuel.image.src}
-                alt={team.samuel.image.alt}
-                fill
-                className="object-cover"
-                priority={true}
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 448px"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Bios Row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Chloe Autio Bio */}
-          <div itemScope itemType="https://schema.org/Person">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-2 heading text-center" itemProp="name">
-              {team.chloe.name}
+      {/* Team Section - Side-by-Side Stacked Layout */}
+      <section className="bg-slate-50 pt-10 pb-16">
+        <div className="container mx-auto px-4">
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary heading">
+              {teamSection.title}
             </h2>
-            <p className="text-xl text-primary-600 mb-4 body-text text-center" itemProp="jobTitle">
-              {team.chloe.title}
-            </p>
-            <p className="text-lg text-gray dark:text-paynesGray mb-4 body-text" itemProp="description">
-              {team.chloe.description}
-            </p>
-            <p className="text-lg text-gray dark:text-paynesGray mb-4 body-text">
-              {team.chloe.bio}
-            </p>
           </div>
 
-          {/* Samuel Wells Bio */}
-          <div itemScope itemType="https://schema.org/Person">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-2 heading text-center" itemProp="name">
-              {team.samuel.name}
-            </h2>
-            <p className="text-xl text-primary-600 mb-4 body-text text-center" itemProp="jobTitle">
-              {team.samuel.title}
-            </p>
-            <p className="text-lg text-gray dark:text-paynesGray mb-4 body-text" itemProp="description">
-              {team.samuel.description}
-            </p>
+          {/* Stacked Team Members */}
+          <div className="max-w-5xl mx-auto space-y-16">
+            {/* Chloe Autio Row */}
+            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start" itemScope itemType="https://schema.org/Person">
+              {/* Chloe Headshot */}
+              <div className="flex-shrink-0">
+                <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-lg overflow-hidden shadow-lg bg-white">
+                  <Image
+                    src={team.chloe.image.src}
+                    alt={team.chloe.image.alt}
+                    fill
+                    className="object-cover"
+                    priority={true}
+                    quality={90}
+                    sizes="(max-width: 768px) 256px, 288px"
+                  />
+                </div>
+              </div>
+              
+              {/* Chloe Bio */}
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2 heading" itemProp="name">
+                  {team.chloe.name}
+                </h3>
+                <p className="text-lg text-primary-600 mb-4 body-text" itemProp="jobTitle">
+                  {team.chloe.title}
+                </p>
+                <p className="text-base text-gray dark:text-paynesGray mb-4 body-text" itemProp="description">
+                  {team.chloe.description}
+                </p>
+                {team.chloe.bio && (
+                  <p className="text-base text-gray dark:text-paynesGray body-text">
+                    {team.chloe.bio}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* Samuel Wells Row */}
+            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start" itemScope itemType="https://schema.org/Person">
+              {/* Samuel Headshot */}
+              <div className="flex-shrink-0">
+                <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-lg overflow-hidden shadow-lg bg-white">
+                  <Image
+                    src={team.samuel.image.src}
+                    alt={team.samuel.image.alt}
+                    fill
+                    className="object-cover"
+                    priority={true}
+                    quality={90}
+                    sizes="(max-width: 768px) 256px, 288px"
+                  />
+                </div>
+              </div>
+              
+              {/* Samuel Bio */}
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2 heading" itemProp="name">
+                  {team.samuel.name}
+                </h3>
+                <p className="text-lg text-primary-600 mb-4 body-text" itemProp="jobTitle">
+                  {team.samuel.title}
+                </p>
+                <p className="text-base text-gray dark:text-paynesGray body-text" itemProp="description">
+                  {team.samuel.description}
+                </p>
+              </div>
+            </div>
+
+            {/* New Team Member Row */}
+            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start" itemScope itemType="https://schema.org/Person">
+              {/* New Member Headshot (Placeholder) */}
+              <div className="flex-shrink-0">
+                <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-lg overflow-hidden shadow-lg bg-white">
+                  <PlaceholderImage alt={team.chaerin.image.alt} />
+                </div>
+              </div>
+              
+              {/* New Member Bio */}
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2 heading" itemProp="name">
+                  {team.chaerin.name}
+                </h3>
+                <p className="text-lg text-primary-600 mb-4 body-text" itemProp="jobTitle">
+                  {team.chaerin.title}
+                </p>
+                <p className="text-base text-gray dark:text-paynesGray body-text" itemProp="description">
+                  {team.chaerin.description}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Call to Action */}
-      <section className="text-center py-8">
+      <section className="text-center py-8 bg-slate-50">
         <h2 className="text-2xl font-bold text-primary mb-4 heading">{cta.title}</h2>
         <p className="text-lg text-gray dark:text-paynesGray mb-6 max-w-2xl mx-auto body-text">
           {cta.description}
@@ -202,4 +244,4 @@ export default function AboutPage() {
       </script>
     </div>
   );
-} 
+}
