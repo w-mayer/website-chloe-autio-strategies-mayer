@@ -1,7 +1,7 @@
 'use client';
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { MotionDiv, useInViewAnimation } from '@/components/ui/motion';
+import { useInView } from '@/lib/hooks/useInView';
 import { AuthorityHeading } from '@/components/ui';
 import { siteContent } from '@/data/content';
 import Image from 'next/image';
@@ -23,7 +23,7 @@ function LogoCard({ logo, index }: LogoCardProps) {
   const getLogoSpecificSize = () => {
     const logoSizes: Record<string, { width: number; height: number }> = {
       'nist': { width: 300, height: 130 },
-      'google-cloud-platform': { width: 240, height: 140 }, // Note: key is 'google-cloud-platform'
+      'google-cloud-platform': { width: 240, height: 140 },
       'google-deepmind': { width: 220, height: 90 },
       'meta': { width: 140, height: 60 },
       'oecd': { width: 180, height: 90 },
@@ -33,14 +33,13 @@ function LogoCard({ logo, index }: LogoCardProps) {
       'us-department-of-defense': { width: 170, height: 85 }
     };
 
-    // Create a key from logo name (handle spaces, case, special chars)
     const logoKey = logo.name.toLowerCase()
       .replace(/[^a-z0-9]/g, '-')
       .replace(/-+/g, '-')
       .replace(/^-|-$/g, '');
 
     return {
-      container: 'h-32 sm:h-36 md:h-40 w-64 sm:w-72 md:w-80', // SAME height for ALL logos
+      container: 'h-32 sm:h-36 md:h-40 w-64 sm:w-72 md:w-80',
       image: logoSizes[logoKey] || { width: 180, height: 80 }
     };
   };
@@ -48,11 +47,9 @@ function LogoCard({ logo, index }: LogoCardProps) {
   const sizeConfig = getLogoSpecificSize();
   
   return (
-    <MotionDiv
-      initial={{ opacity: 0, y: 50 }}
-      animate={hasMounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ delay: index * 0.1, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-      className={`flex items-center justify-center p-4 flex-shrink-0 ${sizeConfig.container}`}
+    <div
+      className={`flex items-center justify-center p-4 flex-shrink-0 ${sizeConfig.container} animate-on-scroll fade-up ${hasMounted ? 'is-visible' : ''}`}
+      style={{ animationDelay: `${index * 0.1}s` }}
       aria-label={logo.name}
     >
       <Image
@@ -68,7 +65,7 @@ function LogoCard({ logo, index }: LogoCardProps) {
         } hover:opacity-80 transition-all duration-300`}
         style={{ objectPosition: 'center' }}
       />
-    </MotionDiv>
+    </div>
   );
 }
 
@@ -141,7 +138,7 @@ export function ClientLogosCarousel() {
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [ref, inView] = useInViewAnimation<HTMLElement>();
+  const [ref, inView] = useInView<HTMLElement>();
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
   const scrollPrev = useCallback(() => {

@@ -2,7 +2,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { AuthorityHeading, Button } from '@/components/ui';
-import { MotionDiv, useInViewAnimation } from '@/components/ui/motion';
+import { useInView } from '@/lib/hooks/useInView';
 import Image from 'next/image';
 import { servicesContent } from '@/data/pages/services';
 import { siteContent } from '@/data/content';
@@ -31,12 +31,12 @@ function getStaggeredDelay(index: number, layoutIndex?: number) {
   const effectiveIndex = layoutIndex !== undefined ? layoutIndex : index;
   const row = Math.floor(effectiveIndex / 3);
   const col = effectiveIndex % 3;
-  return row * 600 + col * 200;
+  return (row * 0.6 + col * 0.2); // Return seconds for CSS animation-delay
 }
 
 function ServiceCard({ service, index, layoutIndex }: { service: Service; index: number; layoutIndex?: number }) {
-  const [ref, inView] = useInViewAnimation<HTMLDivElement>();
-  const delay = getStaggeredDelay(index, layoutIndex) / 1000; // seconds for framer-motion
+  const [ref, inView] = useInView<HTMLDivElement>();
+  const delay = getStaggeredDelay(index, layoutIndex);
   const router = useRouter();
   const { services: servicesContent, ui } = siteContent;
 
@@ -49,19 +49,13 @@ function ServiceCard({ service, index, layoutIndex }: { service: Service; index:
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
     
-    // Create ripple effect using event coordinates directly
-    // Use offsetX/offsetY which are relative to the target element (avoids getBoundingClientRect)
-    // Fall back to calculating from clientX/clientY if offsetX/offsetY not available
     let x: number;
     let y: number;
     
     if (e.nativeEvent.offsetX !== undefined && e.nativeEvent.offsetY !== undefined) {
-      // Use offsetX/offsetY directly (no layout query needed)
       x = e.nativeEvent.offsetX;
       y = e.nativeEvent.offsetY;
     } else {
-      // Fallback: calculate relative position (only if offsetX/offsetY unavailable)
-      // This is rare in modern browsers, but included for compatibility
       const rect = ref.current.getBoundingClientRect();
       x = e.clientX - rect.left;
       y = e.clientY - rect.top;
@@ -69,7 +63,6 @@ function ServiceCard({ service, index, layoutIndex }: { service: Service; index:
     
     const ripple = document.createElement('div');
     ripple.className = 'service-card-ripple';
-    // Use CSS transforms for better performance
     ripple.style.position = 'absolute';
     ripple.style.left = '0';
     ripple.style.top = '0';
@@ -85,7 +78,6 @@ function ServiceCard({ service, index, layoutIndex }: { service: Service; index:
       }
     }, 600);
 
-    // Navigate to service page
     router.push(`/services/${service.slug}`);
   };
 
@@ -98,12 +90,10 @@ function ServiceCard({ service, index, layoutIndex }: { service: Service; index:
   };
 
   return (
-    <MotionDiv
+    <div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={hasMounted && inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ delay, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-      className={`service-card ${service.slug === 'strategy' ? 'center-aligned' : ''}`}
+      className={`service-card ${service.slug === 'strategy' ? 'center-aligned' : ''} animate-on-scroll fade-up ${hasMounted && inView ? 'is-visible' : ''}`}
+      style={{ animationDelay: `${delay}s` }}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       role="button"
@@ -126,7 +116,7 @@ function ServiceCard({ service, index, layoutIndex }: { service: Service; index:
           {servicesContent.learnMore} →
         </Link>
       </div>
-    </MotionDiv>
+    </div>
   );
 }
 
@@ -233,4 +223,4 @@ export default function ServicesGridClient({ services }: ServicesGridClientProps
       </section>
     </div>
   );
-} 
+}
