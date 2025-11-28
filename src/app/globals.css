@@ -832,14 +832,6 @@ body {
   }
 }
 
-@keyframes authorityDotFloat {
-  0%, 100% {
-    transform: translateY(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-3px) scale(1.1);
-  }
-}
 
 @keyframes authorityHighlightExpand {
   0% {
@@ -925,7 +917,7 @@ body {
   z-index: 1;
 }
 
-/* Floating dot at underline end */
+/* Dot at underline end */
 .authority-heading::before {
   content: '';
   position: absolute;
@@ -936,7 +928,6 @@ body {
   background: #14B8A6;
   border-radius: 50%;
   opacity: 0;
-  animation: authorityDotFloat 2s ease-in-out 1.7s infinite;
   z-index: 1;
 }
 

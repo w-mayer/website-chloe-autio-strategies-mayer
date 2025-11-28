@@ -67,6 +67,7 @@ export function Header() {
             alt={header.logo.alt}
             width={138}
             height={40}
+            sizes="138px"
             className="block"
           />
         </a>

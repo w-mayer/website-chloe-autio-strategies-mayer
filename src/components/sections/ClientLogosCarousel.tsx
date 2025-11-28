@@ -86,6 +86,7 @@ function LogoCard({ logo, index }: LogoCardProps) {
         alt={logo.alt}
         width={sizeConfig.image.width}
         height={sizeConfig.image.height}
+        sizes="(max-width: 640px) 160px, (max-width: 768px) 200px, 300px"
         className={`${
           logo.name.toLowerCase().includes('cloud') 
           ? 'object-cover' 
