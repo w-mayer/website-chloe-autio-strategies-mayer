@@ -5,7 +5,7 @@ import { MotionDiv, useInViewAnimation } from '@/components/ui/motion';
 import { AuthorityHeading } from '@/components/ui';
 import { siteContent } from '@/data/content';
 import Image from 'next/image';
-import { ChevronLeftIcon, ChevronRightIcon, PauseIcon, PlayIcon } from '@heroicons/react/24/outline';
+import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 
 interface LogoCardProps {
   logo: { name: string; image: string; alt: string; size: 'standard' | 'large' | 'extra-large' };
@@ -97,7 +97,7 @@ function CarouselControls({
         className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
         aria-label="Previous logos"
       >
-        <ChevronLeftIcon className="w-5 h-5 text-gray-700" />
+        <ChevronLeft className="w-5 h-5 text-gray-700" />
       </button>
       
       <button
@@ -106,9 +106,9 @@ function CarouselControls({
         aria-label={isPlaying ? 'Pause carousel' : 'Play carousel'}
       >
         {isPlaying ? (
-          <PauseIcon className="w-5 h-5 text-gray-700" />
+          <Pause className="w-5 h-5 text-gray-700" />
         ) : (
-          <PlayIcon className="w-5 h-5 text-gray-700" />
+          <Play className="w-5 h-5 text-gray-700" />
         )}
       </button>
       
@@ -118,7 +118,7 @@ function CarouselControls({
         className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
         aria-label="Next logos"
       >
-        <ChevronRightIcon className="w-5 h-5 text-gray-700" />
+        <ChevronRight className="w-5 h-5 text-gray-700" />
       </button>
     </div>
   );

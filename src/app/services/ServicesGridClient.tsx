@@ -2,11 +2,11 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { AuthorityHeading, Button } from '@/components/ui';
+import { MotionDiv, useInViewAnimation } from '@/components/ui/motion';
 import Image from 'next/image';
 import { servicesContent } from '@/data/pages/services';
 import { siteContent } from '@/data/content';
 import type { Service } from '@/data/services';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 function ServiceCardSkeleton() {
@@ -25,31 +25,6 @@ interface ServicesGridClientProps {
   services: Service[];
 }
 
-function useInViewAnimation() {
-  const ref = React.useRef<HTMLDivElement | null>(null);
-  const [inView, setInView] = React.useState(false);
-
-  React.useEffect(() => {
-    if (!ref.current) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setInView(true);
-      return;
-    }
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return [ref, inView] as const;
-}
 
 function getStaggeredDelay(index: number, layoutIndex?: number) {
   // Use layoutIndex if provided, otherwise fall back to original logic
@@ -60,7 +35,7 @@ function getStaggeredDelay(index: number, layoutIndex?: number) {
 }
 
 function ServiceCard({ service, index, layoutIndex }: { service: Service; index: number; layoutIndex?: number }) {
-  const [ref, inView] = useInViewAnimation();
+  const [ref, inView] = useInViewAnimation<HTMLDivElement>();
   const delay = getStaggeredDelay(index, layoutIndex) / 1000; // seconds for framer-motion
   const router = useRouter();
   const { services: servicesContent, ui } = siteContent;
@@ -123,7 +98,7 @@ function ServiceCard({ service, index, layoutIndex }: { service: Service; index:
   };
 
   return (
-    <motion.div
+    <MotionDiv
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={hasMounted && inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -151,7 +126,7 @@ function ServiceCard({ service, index, layoutIndex }: { service: Service; index:
           {servicesContent.learnMore} →
         </Link>
       </div>
-    </motion.div>
+    </MotionDiv>
   );
 }
 
