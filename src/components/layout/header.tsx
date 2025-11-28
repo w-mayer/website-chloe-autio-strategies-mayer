@@ -11,15 +11,44 @@ export function Header() {
   const [scrolled, setScrolled] = React.useState(false);
   const { header } = siteContent;
 
-  // Handle scroll-based transparency
+  // Handle scroll-based transparency (optimized to avoid forced reflows)
   React.useEffect(() => {
+    // Track previous state to avoid unnecessary updates
+    let previousScrolled = false;
+    
+    // Track requestAnimationFrame ID for cleanup
+    let rafId: number | null = null;
+    
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      setScrolled(isScrolled);
+      // Cancel any pending animation frame
+      if (rafId !== null) return;
+      
+      // Batch the scroll handling in requestAnimationFrame
+      rafId = requestAnimationFrame(() => {
+        // Only read scrollY (doesn't cause reflow)
+        const isScrolled = window.scrollY > 10;
+        
+        // Only update state if it actually changed
+        if (isScrolled !== previousScrolled) {
+          previousScrolled = isScrolled;
+          setScrolled(isScrolled);
+        }
+        
+        rafId = null;
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Initial check
+    handleScroll();
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      // Cleanup pending animation frame
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+    };
   }, []);
 
   return (

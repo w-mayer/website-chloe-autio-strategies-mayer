@@ -70,20 +70,39 @@ function ServiceCard({ service, index, layoutIndex }: { service: Service; index:
     setHasMounted(true);
   }, []);
 
-  // Ripple effect and navigation on click
+  // Ripple effect and navigation on click (optimized to avoid getBoundingClientRect)
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
     
-    // Create ripple effect
-    const rect = ref.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    // Create ripple effect using event coordinates directly
+    // Use offsetX/offsetY which are relative to the target element (avoids getBoundingClientRect)
+    // Fall back to calculating from clientX/clientY if offsetX/offsetY not available
+    let x: number;
+    let y: number;
+    
+    if (e.nativeEvent.offsetX !== undefined && e.nativeEvent.offsetY !== undefined) {
+      // Use offsetX/offsetY directly (no layout query needed)
+      x = e.nativeEvent.offsetX;
+      y = e.nativeEvent.offsetY;
+    } else {
+      // Fallback: calculate relative position (only if offsetX/offsetY unavailable)
+      // This is rare in modern browsers, but included for compatibility
+      const rect = ref.current.getBoundingClientRect();
+      x = e.clientX - rect.left;
+      y = e.clientY - rect.top;
+    }
+    
     const ripple = document.createElement('div');
     ripple.className = 'service-card-ripple';
-    ripple.style.left = x + 'px';
-    ripple.style.top = y + 'px';
+    // Use CSS transforms for better performance
+    ripple.style.position = 'absolute';
+    ripple.style.left = '0';
+    ripple.style.top = '0';
     ripple.style.width = '20px';
     ripple.style.height = '20px';
+    ripple.style.transform = `translate(${x}px, ${y}px)`;
+    ripple.style.transformOrigin = 'center';
+    ref.current.style.position = 'relative';
     ref.current.appendChild(ripple);
     setTimeout(() => {
       if (ripple.parentNode) {
