@@ -1,37 +1,11 @@
 'use client';
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { motion } from 'framer-motion';
+import { MotionDiv, useInViewAnimation } from '@/components/ui/motion';
 import { AuthorityHeading } from '@/components/ui';
 import { siteContent } from '@/data/content';
 import Image from 'next/image';
 import { ChevronLeftIcon, ChevronRightIcon, PauseIcon, PlayIcon } from '@heroicons/react/24/outline';
-
-function useInViewAnimation() {
-  const ref = React.useRef<HTMLDivElement | null>(null);
-  const [inView, setInView] = React.useState(false);
-
-  React.useEffect(() => {
-    if (!ref.current) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setInView(true);
-      return;
-    }
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return [ref, inView] as const;
-}
 
 interface LogoCardProps {
   logo: { name: string; image: string; alt: string; size: 'standard' | 'large' | 'extra-large' };
@@ -74,7 +48,7 @@ function LogoCard({ logo, index }: LogoCardProps) {
   const sizeConfig = getLogoSpecificSize();
   
   return (
-    <motion.div
+    <MotionDiv
       initial={{ opacity: 0, y: 50 }}
       animate={hasMounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ delay: index * 0.1, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
@@ -94,7 +68,7 @@ function LogoCard({ logo, index }: LogoCardProps) {
         } hover:opacity-80 transition-all duration-300`}
         style={{ objectPosition: 'center' }}
       />
-    </motion.div>
+    </MotionDiv>
   );
 }
 
@@ -167,7 +141,7 @@ export function ClientLogosCarousel() {
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [ref, inView] = useInViewAnimation();
+  const [ref, inView] = useInViewAnimation<HTMLElement>();
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
   const scrollPrev = useCallback(() => {
@@ -239,8 +213,8 @@ export function ClientLogosCarousel() {
         </div>
         
         <div className="relative">
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex">
+          <div className="overflow-hidden embla__viewport" ref={emblaRef}>
+            <div className="flex embla__container">
               {clientLogos.logos.map((logo, index) => (
                 <LogoCard key={logo.name} logo={logo as { name: string; image: string; alt: string; size: 'standard' | 'large' | 'extra-large' }} index={index} />
               ))}

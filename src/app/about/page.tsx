@@ -90,34 +90,34 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {/* Chloe Autio Image */}
           <div className="flex justify-center">
-            <div className="relative w-full max-w-md h-[500px] rounded-lg overflow-hidden shadow-lg bg-white">
+            <div 
+              className="relative w-full max-w-md rounded-lg overflow-hidden shadow-lg bg-white"
+              style={{ aspectRatio: '5/4' }}
+            >
               <Image
                 src={team.chloe.image.src}
                 alt={team.chloe.image.alt}
                 fill
                 className="object-cover"
                 priority={true}
-                quality={90}
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 448px"
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               />
             </div>
           </div>
           
           {/* Samuel Wells Image */}
           <div className="flex justify-center">
-            <div className="relative w-full max-w-md h-[500px] rounded-lg overflow-hidden shadow-lg bg-white">
+            <div 
+              className="relative w-full max-w-md rounded-lg overflow-hidden shadow-lg bg-white"
+              style={{ aspectRatio: '5/4' }}
+            >
               <Image
                 src={team.samuel.image.src}
                 alt={team.samuel.image.alt}
                 fill
                 className="object-cover"
                 priority={true}
-                quality={90}
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 448px"
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               />
             </div>
           </div>

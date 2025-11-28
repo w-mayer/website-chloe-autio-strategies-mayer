@@ -1,33 +1,7 @@
 'use client';
 import React from 'react';
-import { motion } from 'framer-motion';
+import { MotionQuote, useInViewAnimation } from '@/components/ui/motion';
 import { siteContent } from '@/data/content';
-
-function useInViewAnimation() {
-  const ref = React.useRef<HTMLQuoteElement | null>(null);
-  const [inView, setInView] = React.useState(false);
-
-  React.useEffect(() => {
-    if (!ref.current) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setInView(true);
-      return;
-    }
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return [ref, inView] as const;
-}
 
 interface TestimonialCardProps {
   testimonial: { quote: string; name: string; role: string };
@@ -35,9 +9,9 @@ interface TestimonialCardProps {
 }
 
 function TestimonialCard({ testimonial, delay }: TestimonialCardProps) {
-  const [ref, inView] = useInViewAnimation();
+  const [ref, inView] = useInViewAnimation<HTMLQuoteElement>();
   return (
-    <motion.blockquote
+    <MotionQuote
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -49,7 +23,7 @@ function TestimonialCard({ testimonial, delay }: TestimonialCardProps) {
         <span className="block font-semibold text-primary-700 dark:text-primary-400">{testimonial.name}</span>
         <span className="block text-sm text-neutral-500 dark:text-neutral-400">{testimonial.role}</span>
       </footer>
-    </motion.blockquote>
+    </MotionQuote>
   );
 }
 
@@ -70,4 +44,4 @@ export function Testimonials() {
       </div>
     </section>
   );
-} 
+}

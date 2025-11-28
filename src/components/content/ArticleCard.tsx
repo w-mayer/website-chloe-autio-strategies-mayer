@@ -1,35 +1,9 @@
 'use client';
 import React from 'react';
-import { motion } from 'framer-motion';
+import { MotionArticle, useInViewAnimation } from '@/components/ui/motion';
 import type { Article as ArticleType } from '@/data/resources';
 import Link from 'next/link';
 import { siteContent } from '@/data/content';
-
-function useInViewAnimation() {
-  const ref = React.useRef<HTMLDivElement | null>(null);
-  const [inView, setInView] = React.useState(false);
-
-  React.useEffect(() => {
-    if (!ref.current) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setInView(true);
-      return;
-    }
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return [ref, inView] as const;
-}
 
 export function CardSkeleton() {
   return (
@@ -47,11 +21,11 @@ interface ArticleCardProps {
 }
 
 function ArticleCardInner({ article }: { article: ArticleType }) {
-  const [ref, inView] = useInViewAnimation();
+  const [ref, inView] = useInViewAnimation<HTMLElement>();
   const { ui } = siteContent;
   
   return (
-    <motion.article
+    <MotionArticle
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -93,11 +67,11 @@ function ArticleCardInner({ article }: { article: ArticleType }) {
           </Link>
         )}
       </div>
-    </motion.article>
+    </MotionArticle>
   );
 }
 
 export function ArticleCard({ article, isLoading }: ArticleCardProps) {
   if (isLoading || !article) return <CardSkeleton />;
   return <ArticleCardInner article={article} />;
-} 
+}

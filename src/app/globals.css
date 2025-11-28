@@ -1274,3 +1274,21 @@ section:not(.bg-white) .authority-heading {
   display: block;
   background: #ffffff !important;
 }
+
+/* Carousel performance optimization - reduces forced reflows */
+.embla__viewport {
+  contain: layout style;
+}
+
+.embla__container {
+  contain: layout style;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Optimize carousel slide items for GPU acceleration */
+.embla__container > * {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
