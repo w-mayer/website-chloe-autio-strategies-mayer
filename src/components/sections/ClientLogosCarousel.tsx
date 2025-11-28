@@ -13,11 +13,7 @@ interface LogoCardProps {
 }
 
 function LogoCard({ logo, index }: LogoCardProps) {
-  const [hasMounted, setHasMounted] = React.useState(false);
-  
-  React.useEffect(() => {
-    setHasMounted(true);
-  }, []);
+  const [ref, inView] = useInView<HTMLDivElement>();
   
   // Logo-specific sizing for perfect visual balance
   const getLogoSpecificSize = () => {
@@ -48,7 +44,8 @@ function LogoCard({ logo, index }: LogoCardProps) {
   
   return (
     <div
-      className={`flex items-center justify-center p-4 flex-shrink-0 ${sizeConfig.container} animate-on-scroll fade-up ${hasMounted ? 'is-visible' : ''}`}
+      ref={ref}
+      className={`flex items-center justify-center p-4 flex-shrink-0 ${sizeConfig.container} animate-on-scroll fade-up ${inView ? 'is-visible' : ''}`}
       style={{ animationDelay: `${index * 0.1}s` }}
       aria-label={logo.name}
     >

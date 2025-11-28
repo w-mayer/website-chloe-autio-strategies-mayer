@@ -1,21 +1,29 @@
+'use client';
 import Link from 'next/link';
 import { services } from '@/data/services';
 import { AuthorityHeading, ContentErrorBoundary } from '@/components/ui';
 import { siteContent } from '@/data/content';
+import { useInView } from '@/lib/hooks/useInView';
 
 interface ServiceCardProps {
   service: (typeof services)[number];
   learnMoreLabel: string;
   learnMoreAriaPrefix: string;
+  index: number;
 }
 
-function ServiceCard({ service, learnMoreLabel, learnMoreAriaPrefix }: ServiceCardProps) {
+function ServiceCard({ service, learnMoreLabel, learnMoreAriaPrefix, index }: ServiceCardProps) {
+  const [ref, inView] = useInView<HTMLAnchorElement>();
+  const delay = (Math.floor(index / 3) * 0.15) + ((index % 3) * 0.1);
+  
   return (
     <Link
+      ref={ref}
       href={`/services/${service.slug}`}
-      className={`service-card group block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+      className={`service-card group block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary animate-on-scroll fade-up ${inView ? 'is-visible' : ''} ${
         service.slug === 'strategy' ? 'center-aligned' : ''
       }`}
+      style={{ animationDelay: `${delay}s` }}
       aria-label={`${learnMoreAriaPrefix} ${service.title}`}
     >
       <div className="relative h-full flex flex-col justify-between">
@@ -50,12 +58,13 @@ function ServicesGridContent() {
         </div>
 
         <div className="services-grid max-w-6xl mx-auto">
-          {services.map((service) => (
+          {services.map((service, index) => (
             <ServiceCard
               key={service.slug}
               service={service}
               learnMoreLabel={servicesContent.learnMore}
               learnMoreAriaPrefix={aria.learnMoreAbout}
+              index={index}
             />
           ))}
         </div>

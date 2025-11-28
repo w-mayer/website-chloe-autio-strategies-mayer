@@ -1387,9 +1387,11 @@ section:not(.bg-white) .authority-heading {
 /* Initial state for scroll-triggered animations */
 .animate-on-scroll {
   opacity: 0;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.animate-on-scroll.is-visible {
+/* Simple fade without transform - fallback for elements without specific animation class */
+.animate-on-scroll.is-visible:not(.fade-up):not(.fade-down):not(.scale) {
   opacity: 1;
 }
 

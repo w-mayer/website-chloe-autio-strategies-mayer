@@ -40,11 +40,6 @@ function ServiceCard({ service, index, layoutIndex }: { service: Service; index:
   const router = useRouter();
   const { services: servicesContent, ui } = siteContent;
 
-  const [hasMounted, setHasMounted] = React.useState(false);
-  React.useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
   // Ripple effect and navigation on click (optimized to avoid getBoundingClientRect)
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
@@ -92,7 +87,7 @@ function ServiceCard({ service, index, layoutIndex }: { service: Service; index:
   return (
     <div
       ref={ref}
-      className={`service-card ${service.slug === 'strategy' ? 'center-aligned' : ''} animate-on-scroll fade-up ${hasMounted && inView ? 'is-visible' : ''}`}
+      className={`service-card ${service.slug === 'strategy' ? 'center-aligned' : ''} animate-on-scroll fade-up ${inView ? 'is-visible' : ''}`}
       style={{ animationDelay: `${delay}s` }}
       onClick={handleClick}
       onKeyDown={handleKeyDown}

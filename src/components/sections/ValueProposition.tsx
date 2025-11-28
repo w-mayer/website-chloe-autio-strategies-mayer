@@ -1,14 +1,24 @@
+'use client';
 import { AuthorityHeading } from '@/components/ui';
 import { siteContent } from '@/data/content';
+import { useInView } from '@/lib/hooks/useInView';
 
 interface CardProps {
   title: string;
   desc: string;
+  index: number;
 }
 
-function Card({ title, desc }: CardProps) {
+function Card({ title, desc, index }: CardProps) {
+  const [ref, inView] = useInView<HTMLDivElement>();
+  const delay = index * 0.15;
+  
   return (
-    <div className="service-card transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg">
+    <div 
+      ref={ref}
+      className={`service-card transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg animate-on-scroll fade-up ${inView ? 'is-visible' : ''}`}
+      style={{ animationDelay: `${delay}s` }}
+    >
       <div className="relative h-full flex flex-col justify-start">
         <h3 className="text-xl font-semibold text-primary mb-2 service-card-icon">{title}</h3>
         <p className="text-neutral-700 dark:text-neutral-200 text-base body-text service-card-number">{desc}</p>
@@ -32,8 +42,8 @@ export function ValueProposition() {
           </AuthorityHeading>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
-          {valueProposition.cards.map((card) => (
-            <Card key={card.title} title={card.title} desc={card.description} />
+          {valueProposition.cards.map((card, index) => (
+            <Card key={card.title} title={card.title} desc={card.description} index={index} />
           ))}
         </div>
       </div>
