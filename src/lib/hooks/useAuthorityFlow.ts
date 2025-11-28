@@ -23,20 +23,71 @@ export const useAuthorityFlow = (options: UseAuthorityFlowOptions = {}): UseAuth
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [underlineComplete, setUnderlineComplete] = useState(false);
+  
+  // Cache layout values to avoid forced reflows
+  const cachedLayout = useRef({
+    scrollHeight: 0,
+    windowHeight: 0,
+  });
+  
+  // Track requestAnimationFrame ID for cleanup
+  const rafId = useRef<number | null>(null);
+  
+  // Pending filter value to batch updates
+  const pendingFilterValue = useRef<string | null>(null);
 
-  // Handle scroll interactions
-  const handleScroll = useCallback(() => {
+  // Update cached layout values
+  const updateCachedLayout = useCallback(() => {
+    cachedLayout.current = {
+      scrollHeight: document.body.scrollHeight,
+      windowHeight: window.innerHeight,
+    };
+  }, []);
+
+  // Apply filter batched via requestAnimationFrame to avoid forced reflows
+  const applyFilter = useCallback((filterValue: string) => {
     if (!ref.current) return;
+    
+    // Cancel any pending animation frame
+    if (rafId.current !== null) {
+      cancelAnimationFrame(rafId.current);
+    }
+    
+    // Store pending value
+    pendingFilterValue.current = filterValue;
+    
+    // Batch the style update in the next frame (avoids forced reflow)
+    rafId.current = requestAnimationFrame(() => {
+      if (ref.current && pendingFilterValue.current !== null) {
+        // Set filter directly - batched in requestAnimationFrame to avoid reflow
+        ref.current.style.filter = pendingFilterValue.current;
+        pendingFilterValue.current = null;
+      }
+      rafId.current = null;
+    });
+  }, []);
 
-    const windowHeight = window.innerHeight;
+  // Handle scroll interactions (optimized to avoid forced reflows)
+  const handleScroll = useCallback(() => {
+    if (!ref.current || !enableColorShift) return;
+
+    // Use cached layout values instead of reading on every scroll
+    const { scrollHeight, windowHeight } = cachedLayout.current;
+    
+    // Only read scroll position (this doesn't cause reflow)
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    // Color shift based on scroll depth
-    if (enableColorShift && ref.current) {
-      const scrollDepth = Math.max(0, Math.min(1, scrollTop / (document.body.scrollHeight - windowHeight)));
-      ref.current.style.filter = `brightness(${1 - scrollDepth * 0.1}) saturate(${1 + scrollDepth * 0.1})`;
-    }
-  }, [enableColorShift]);
+    // Calculate scroll depth using cached values
+    const maxScroll = scrollHeight - windowHeight;
+    if (maxScroll <= 0) return;
+    
+    const scrollDepth = Math.max(0, Math.min(1, scrollTop / maxScroll));
+    const brightness = 1 - scrollDepth * 0.1;
+    const saturation = 1 + scrollDepth * 0.1;
+    
+    // Batch the style update
+    applyFilter(`brightness(${brightness}) saturate(${saturation})`);
+  }, [enableColorShift, applyFilter]);
 
   // Intersection Observer for visibility
   useEffect(() => {
@@ -55,14 +106,45 @@ export const useAuthorityFlow = (options: UseAuthorityFlowOptions = {}): UseAuth
       observer.observe(ref.current);
     }
 
-    window.addEventListener('scroll', handleScroll);
+    // Initialize cached layout values
+    updateCachedLayout();
+    
+    // Update cached values on resize
+    const handleResize = () => {
+      updateCachedLayout();
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Use requestAnimationFrame to throttle scroll handler
+    let scrollRafId: number | null = null;
+    const throttledScroll = () => {
+      if (scrollRafId !== null) return;
+      
+      scrollRafId = requestAnimationFrame(() => {
+        handleScroll();
+        scrollRafId = null;
+      });
+    };
+    
+    window.addEventListener('scroll', throttledScroll, { passive: true });
     handleScroll(); // Initial call
 
     return () => {
       observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', throttledScroll);
+      window.removeEventListener('resize', handleResize);
+      
+      // Cleanup pending animation frame
+      if (rafId.current !== null) {
+        cancelAnimationFrame(rafId.current);
+        rafId.current = null;
+      }
+      if (scrollRafId !== null) {
+        cancelAnimationFrame(scrollRafId);
+      }
     };
-  }, [enableColorShift, progressThreshold, handleScroll]);
+  }, [enableColorShift, progressThreshold, handleScroll, updateCachedLayout]);
 
   // Manual trigger for animation
   const triggerAnimation = useCallback(() => {
@@ -75,6 +157,12 @@ export const useAuthorityFlow = (options: UseAuthorityFlowOptions = {}): UseAuth
     setIsVisible(false);
     setUnderlineComplete(false);
     if (ref.current) {
+      // Cancel any pending updates
+      if (rafId.current !== null) {
+        cancelAnimationFrame(rafId.current);
+        rafId.current = null;
+      }
+      pendingFilterValue.current = null;
       ref.current.style.filter = '';
     }
   }, []);

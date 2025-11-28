@@ -5,6 +5,11 @@ export const resourcesContent = {
     background: {
       image: '/images/stocks/optimized/hero-background.webp',
       alt: 'Insights background',
+      variants: {
+        small: '/images/stocks/optimized/hero-background.webp',
+        medium: '/images/stocks/optimized/hero-background.webp',
+        large: '/images/stocks/optimized/hero-background.webp',
+      },
     },
   },
 }; 

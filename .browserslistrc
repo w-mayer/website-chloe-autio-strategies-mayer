@@ -1,0 +1,7 @@
+# Modern browsers that support ES6 modules
+# This reduces polyfill bundle size significantly
+
+defaults and not IE 11
+>0.5% and supports es6-module
+not dead
+

@@ -1,10 +1,17 @@
 import type { Metadata, Viewport } from "next";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { PageTransition } from "@/components/layout/PageTransition";
 import { ErrorBoundary } from "@/components/ui";
 import { siteMetadata } from "@/data/metadata";
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: siteMetadata.default.title,
@@ -43,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={dmSans.variable}>
       <head>
         {/* Additional favicon declarations for maximum compatibility */}
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
@@ -77,17 +84,15 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <ErrorBoundary>
-          <div className="relative flex min-h-screen flex-col">
-            <Header />
-            <PageTransition>
+          <ErrorBoundary>
+            <div className="relative flex min-h-screen flex-col">
+              <Header />
               <main id="main-content" role="main" tabIndex={-1} className="flex-1 focus:outline-none">
                 {children}
               </main>
-            </PageTransition>
-            <Footer />
-          </div>
-        </ErrorBoundary>
+              <Footer />
+            </div>
+          </ErrorBoundary>
       </body>
     </html>
   );

@@ -3,10 +3,10 @@ import { Metadata } from 'next';
 import { AuthorityHeading, Button } from '@/components/ui';
 import { services } from '@/data/services';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import { siteMetadata } from '@/data/metadata';
 import { siteContent } from '@/data/content';
 import { ServiceSlug } from '@/types/metadata';
+import { getResponsiveBackgroundStyle } from '@/lib/responsive-background';
 
 interface ServicePageProps {
   params: Promise<{ slug: string }>;
@@ -69,26 +69,26 @@ export default async function ServicePage({ params }: ServicePageProps) {
   if (!service) {
     return notFound();
   }
+  const backgroundStyle = getResponsiveBackgroundStyle(
+    service.backgroundImage,
+    service.backgroundVariants
+  );
 
   return (
     <>
       {/* Hero Section with Service-Specific Background */}
       <section className="relative bg-primary h-[30vh] min-h-[250px] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={service.backgroundImage}
-            alt={`${service.title} background`}
-            fill
-            className="object-cover"
-            style={{ objectPosition: service.backgroundPosition || "center 43%" }}
-            priority={true}
-            quality={90}
-            sizes="100vw"
-          />
-          {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black/50 z-10"></div>
-        </div>
+        <div
+          className="absolute inset-0 z-0 responsive-bg"
+          style={{
+            ...backgroundStyle,
+            backgroundPosition: service.backgroundPosition || 'center 43%',
+          }}
+          aria-hidden="true"
+        />
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/50 z-10" aria-hidden="true" />
         
         {/* Content */}
         <div className="container mx-auto px-4 text-center relative z-20">
