@@ -39,12 +39,12 @@ export const aboutContent = {
       },
     },
     chaerin: {
-      name: '[New Team Member]',
-      title: '[Title]',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. Praesent vel magna at nisi aliquet tincidunt vel sed libero. Maecenas eget lacus vitae metus commodo gravida. Suspendisse potenti. Nulla facilisi. Integer nec odio praesent libero. Sed cursus ante dapibus diam. Sed nisi nulla, sollicitudin sit amet eros vel, pharetra tempor dolor. Donec rutrum congue leo eget malesuada. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.',
+      name: 'Chaerin Lim',
+      title: 'Technical Policy Specialist',
+      description: 'Chaerin is a technical policy specialist with a background in AI governance, trust and safety, and risk assessment. Her expertise lies in translating technical AI concepts into accessible languagefor senior stakeholders and developing scalable policy solutions. She has held a wide range of roles in technology policy, where she translated complex regulatory frameworks into actionable strategy for major tech platforms and public sector organizations across three continents. Chaerin has conducted platform risk assessments for large tech companies as a Trust and Safety analyst at Tremau. As a tech policy consultant, she has worked with the OECD AI unit, the World Bank, and Humane Intelligence. Chaerin holds an MPP from the Harvard Kennedy School and a B.S. in Computer Science with a secondary major in Literature and Creative Writing from New York University Abu Dhabi.',
       image: {
-        src: null,
-        alt: '[New Team Member] at Autio Strategies',
+        src: '/images/headshot/optimized/lim_headshot.webp',
+        alt: 'Chaerin Lim, Technical Policy Specialist at Autio Strategies',
       },
     },
   },

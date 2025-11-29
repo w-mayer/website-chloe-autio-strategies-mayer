@@ -114,6 +114,11 @@ async function optimizeHeadshots() {
       input: path.join(sourceDir, 'Sam Headshot.jpeg'),
       outputBaseName: 'wells_headshot',
     },
+    {
+      // Lim headshot source is in the regular headshot folder
+      input: path.join(__dirname, '../public/images/headshot/lim_headshot.jpg'),
+      outputBaseName: 'lim_headshot',
+    },
   ];
 
   for (const image of images) {
