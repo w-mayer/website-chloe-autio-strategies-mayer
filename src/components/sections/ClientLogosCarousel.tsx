@@ -1,37 +1,11 @@
 'use client';
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { motion } from 'framer-motion';
+import { useInView } from '@/lib/hooks/useInView';
 import { AuthorityHeading } from '@/components/ui';
 import { siteContent } from '@/data/content';
 import Image from 'next/image';
-import { ChevronLeftIcon, ChevronRightIcon, PauseIcon, PlayIcon } from '@heroicons/react/24/outline';
-
-function useInViewAnimation() {
-  const ref = React.useRef<HTMLDivElement | null>(null);
-  const [inView, setInView] = React.useState(false);
-
-  React.useEffect(() => {
-    if (!ref.current) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setInView(true);
-      return;
-    }
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return [ref, inView] as const;
-}
+import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 
 interface LogoCardProps {
   logo: { name: string; image: string; alt: string; size: 'standard' | 'large' | 'extra-large' };
@@ -39,17 +13,13 @@ interface LogoCardProps {
 }
 
 function LogoCard({ logo, index }: LogoCardProps) {
-  const [hasMounted, setHasMounted] = React.useState(false);
-  
-  React.useEffect(() => {
-    setHasMounted(true);
-  }, []);
+  const [ref, inView] = useInView<HTMLDivElement>();
   
   // Logo-specific sizing for perfect visual balance
   const getLogoSpecificSize = () => {
     const logoSizes: Record<string, { width: number; height: number }> = {
       'nist': { width: 300, height: 130 },
-      'google-cloud-platform': { width: 240, height: 140 }, // Note: key is 'google-cloud-platform'
+      'google-cloud-platform': { width: 240, height: 140 },
       'google-deepmind': { width: 220, height: 90 },
       'meta': { width: 140, height: 60 },
       'oecd': { width: 180, height: 90 },
@@ -59,14 +29,13 @@ function LogoCard({ logo, index }: LogoCardProps) {
       'us-department-of-defense': { width: 170, height: 85 }
     };
 
-    // Create a key from logo name (handle spaces, case, special chars)
     const logoKey = logo.name.toLowerCase()
       .replace(/[^a-z0-9]/g, '-')
       .replace(/-+/g, '-')
       .replace(/^-|-$/g, '');
 
     return {
-      container: 'h-32 sm:h-36 md:h-40 w-64 sm:w-72 md:w-80', // SAME height for ALL logos
+      container: 'h-32 sm:h-36 md:h-40 w-64 sm:w-72 md:w-80',
       image: logoSizes[logoKey] || { width: 180, height: 80 }
     };
   };
@@ -74,11 +43,10 @@ function LogoCard({ logo, index }: LogoCardProps) {
   const sizeConfig = getLogoSpecificSize();
   
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={hasMounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ delay: index * 0.1, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-      className={`flex items-center justify-center p-4 flex-shrink-0 ${sizeConfig.container}`}
+    <div
+      ref={ref}
+      className={`flex items-center justify-center p-4 flex-shrink-0 ${sizeConfig.container} animate-on-scroll fade-up ${inView ? 'is-visible' : ''}`}
+      style={{ animationDelay: `${index * 0.1}s` }}
       aria-label={logo.name}
     >
       <Image
@@ -86,15 +54,15 @@ function LogoCard({ logo, index }: LogoCardProps) {
         alt={logo.alt}
         width={sizeConfig.image.width}
         height={sizeConfig.image.height}
+        sizes="(max-width: 640px) 160px, (max-width: 768px) 200px, 300px"
         className={`${
           logo.name.toLowerCase().includes('cloud') 
           ? 'object-cover' 
           : 'object-contain'
         } hover:opacity-80 transition-all duration-300`}
         style={{ objectPosition: 'center' }}
-        priority={index < 4}
       />
-    </motion.div>
+    </div>
   );
 }
 
@@ -123,7 +91,7 @@ function CarouselControls({
         className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
         aria-label="Previous logos"
       >
-        <ChevronLeftIcon className="w-5 h-5 text-gray-700" />
+        <ChevronLeft className="w-5 h-5 text-gray-700" />
       </button>
       
       <button
@@ -132,9 +100,9 @@ function CarouselControls({
         aria-label={isPlaying ? 'Pause carousel' : 'Play carousel'}
       >
         {isPlaying ? (
-          <PauseIcon className="w-5 h-5 text-gray-700" />
+          <Pause className="w-5 h-5 text-gray-700" />
         ) : (
-          <PlayIcon className="w-5 h-5 text-gray-700" />
+          <Play className="w-5 h-5 text-gray-700" />
         )}
       </button>
       
@@ -144,7 +112,7 @@ function CarouselControls({
         className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
         aria-label="Next logos"
       >
-        <ChevronRightIcon className="w-5 h-5 text-gray-700" />
+        <ChevronRight className="w-5 h-5 text-gray-700" />
       </button>
     </div>
   );
@@ -167,7 +135,7 @@ export function ClientLogosCarousel() {
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [ref, inView] = useInViewAnimation();
+  const [ref, inView] = useInView<HTMLElement>();
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
   const scrollPrev = useCallback(() => {
@@ -239,8 +207,8 @@ export function ClientLogosCarousel() {
         </div>
         
         <div className="relative">
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex">
+          <div className="overflow-hidden embla__viewport" ref={emblaRef}>
+            <div className="flex embla__container">
               {clientLogos.logos.map((logo, index) => (
                 <LogoCard key={logo.name} logo={logo as { name: string; image: string; alt: string; size: 'standard' | 'large' | 'extra-large' }} index={index} />
               ))}

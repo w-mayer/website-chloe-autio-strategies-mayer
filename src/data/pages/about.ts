@@ -4,6 +4,11 @@ export const aboutContent = {
     background: {
       image: '/images/stocks/optimized/about.webp',
       alt: 'About Autio Strategies background',
+      variants: {
+        small: '/images/stocks/optimized/about-small.webp',
+        medium: '/images/stocks/optimized/about-medium.webp',
+        large: '/images/stocks/optimized/about-large.webp',
+      },
     },
   },
   body: {
@@ -17,8 +22,7 @@ export const aboutContent = {
     chloe: {
       name: 'Chloe Autio',
       title: 'Founder & CEO',
-      description: 'Chloe Autio is a technology policy expert with nearly a decade of experience advising organizations on AI policy and governance. Through her practice Autio Strategies, she provides strategic guidance to clients including government bodies, Fortune 50 companies, large AI labs and startups, and leading trade associations. Her advice helps organizations develop clear policy positions, enhance engagement and internal strategies, and anticipate regulatory implications. Chloe\'s consultancy is built on a solid foundation of experience, including her pivotal role in shaping Intel Corps emerging technology policy portfolio and developing their Responsible AI (RAI) program from its beginning.',
-      bio: 'Chloe is an Adjunct AI Policy Advisor at the Institute for Security and Technology, a Faculty Lecturer at the Future of Privacy Forum, and board member of Humane Intelligence. Her insights are frequently sought after by both government and civil society organizations, and her expertise has been highlighted in prominent media outlets such as the Wall Street Journal, Axios, POLITICO, and Bloomberg, among others. She holds an economics degree from UC Berkeley, where she studied a range of topics related to technology policy, data ethics, and the social implications of computing. Chloe resides in the Washington, D.C. area with her husband and stepdaughter.',
+      description: 'Chloe Autio is a technology policy expert with nearly a decade of experience advising organizations on AI policy and governance. Through her practice Autio Strategies, she provides strategic guidance to clients including government bodies, Fortune 50 companies, large AI labs and startups, and leading trade associations. Chloe\'s consultancy is built on a solid foundation, including her pivotal role in shaping Intel Corps emerging technology policy portfolio and developing their Responsible AI (RAI) program from its beginning. Chloe is an Adjunct AI Policy Advisor at the Institute for Security and Technology, a Faculty Lecturer at the Future of Privacy Forum, and board member of Humane Intelligence. Her insights are frequently sought after by both government and civil society organizations, and her expertise has been highlighted in prominent media outlets such as the Wall Street Journal, Axios, POLITICO, and Bloomberg, among others. She holds an economics degree from UC Berkeley, where she studied a range of topics related to technology policy, data ethics, and the social implications of computing.',
       image: {
         src: '/images/headshot/optimized/autio_headshot.webp',
         alt: 'Chloe Autio, Founder & CEO of Autio Strategies',
@@ -31,6 +35,15 @@ export const aboutContent = {
       image: {
         src: '/images/headshot/optimized/wells_headshot.webp',
         alt: 'Samuel Wells, Policy Manager at Autio Strategies',
+      },
+    },
+    chaerin: {
+      name: 'Chaerin Lim',
+      title: 'Technical Policy Specialist',
+      description: 'Chaerin Lim has a background in AI governance, trust and safety, and risk assessment. Her expertise lies in translating technical AI concepts into accessible language for senior stakeholders and developing scalable policy solutions across three continents. Chaerin has conducted platform risk assessments for large tech companies as a Trust and Safety analyst at Tremau. Previously, she was a policy researcher at Kakao, South Korea\'s leading technology company, where she performed regulatory risk assessments against global frameworks, advised the crisis response committee during a nationwide service blackout, and helped develop the country\'s first corporate guidelines for responsible AI. As a tech policy consultant, she has worked with the OECD AI unit, the World Bank, and Humane Intelligence. Chaerin holds an MPP from the Harvard Kennedy School and a BS in Computer Science with a secondary major in Literature and Creative Writing from New York University Abu Dhabi.',
+      image: {
+        src: '/images/headshot/optimized/lim_headshot.webp',
+        alt: 'Chaerin Lim, Technical Policy Specialist at Autio Strategies',
       },
     },
   },

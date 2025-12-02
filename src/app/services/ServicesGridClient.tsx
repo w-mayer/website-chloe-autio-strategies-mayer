@@ -2,11 +2,11 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { AuthorityHeading, Button } from '@/components/ui';
+import { useInView } from '@/lib/hooks/useInView';
 import Image from 'next/image';
 import { servicesContent } from '@/data/pages/services';
 import { siteContent } from '@/data/content';
 import type { Service } from '@/data/services';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 function ServiceCardSkeleton() {
@@ -25,65 +25,47 @@ interface ServicesGridClientProps {
   services: Service[];
 }
 
-function useInViewAnimation() {
-  const ref = React.useRef<HTMLDivElement | null>(null);
-  const [inView, setInView] = React.useState(false);
-
-  React.useEffect(() => {
-    if (!ref.current) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setInView(true);
-      return;
-    }
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return [ref, inView] as const;
-}
 
 function getStaggeredDelay(index: number, layoutIndex?: number) {
   // Use layoutIndex if provided, otherwise fall back to original logic
   const effectiveIndex = layoutIndex !== undefined ? layoutIndex : index;
   const row = Math.floor(effectiveIndex / 3);
   const col = effectiveIndex % 3;
-  return row * 600 + col * 200;
+  return (row * 0.6 + col * 0.2); // Return seconds for CSS animation-delay
 }
 
 function ServiceCard({ service, index, layoutIndex }: { service: Service; index: number; layoutIndex?: number }) {
-  const [ref, inView] = useInViewAnimation();
-  const delay = getStaggeredDelay(index, layoutIndex) / 1000; // seconds for framer-motion
+  const [ref, inView] = useInView<HTMLDivElement>();
+  const delay = getStaggeredDelay(index, layoutIndex);
   const router = useRouter();
   const { services: servicesContent, ui } = siteContent;
 
-  const [hasMounted, setHasMounted] = React.useState(false);
-  React.useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
-  // Ripple effect and navigation on click
+  // Ripple effect and navigation on click (optimized to avoid getBoundingClientRect)
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
     
-    // Create ripple effect
-    const rect = ref.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    let x: number;
+    let y: number;
+    
+    if (e.nativeEvent.offsetX !== undefined && e.nativeEvent.offsetY !== undefined) {
+      x = e.nativeEvent.offsetX;
+      y = e.nativeEvent.offsetY;
+    } else {
+      const rect = ref.current.getBoundingClientRect();
+      x = e.clientX - rect.left;
+      y = e.clientY - rect.top;
+    }
+    
     const ripple = document.createElement('div');
     ripple.className = 'service-card-ripple';
-    ripple.style.left = x + 'px';
-    ripple.style.top = y + 'px';
+    ripple.style.position = 'absolute';
+    ripple.style.left = '0';
+    ripple.style.top = '0';
     ripple.style.width = '20px';
     ripple.style.height = '20px';
+    ripple.style.transform = `translate(${x}px, ${y}px)`;
+    ripple.style.transformOrigin = 'center';
+    ref.current.style.position = 'relative';
     ref.current.appendChild(ripple);
     setTimeout(() => {
       if (ripple.parentNode) {
@@ -91,7 +73,6 @@ function ServiceCard({ service, index, layoutIndex }: { service: Service; index:
       }
     }, 600);
 
-    // Navigate to service page
     router.push(`/services/${service.slug}`);
   };
 
@@ -104,12 +85,10 @@ function ServiceCard({ service, index, layoutIndex }: { service: Service; index:
   };
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={hasMounted && inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ delay, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-      className={`service-card ${service.slug === 'strategy' ? 'center-aligned' : ''}`}
+      className={`service-card ${service.slug === 'strategy' ? 'center-aligned' : ''} animate-on-scroll fade-up ${inView ? 'is-visible' : ''}`}
+      style={{ animationDelay: `${delay}s` }}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       role="button"
@@ -132,7 +111,7 @@ function ServiceCard({ service, index, layoutIndex }: { service: Service; index:
           {servicesContent.learnMore} →
         </Link>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -239,4 +218,4 @@ export default function ServicesGridClient({ services }: ServicesGridClientProps
       </section>
     </div>
   );
-} 
+}

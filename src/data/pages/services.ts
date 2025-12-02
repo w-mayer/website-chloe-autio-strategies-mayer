@@ -5,6 +5,11 @@ export const servicesContent = {
     background: {
       image: '/images/stocks/optimized/services.webp',
       alt: 'Services background',
+      variants: {
+        small: '/images/stocks/optimized/services-small.webp',
+        medium: '/images/stocks/optimized/services-medium.webp',
+        large: '/images/stocks/optimized/services-large.webp',
+      },
     },
   },
 }; 

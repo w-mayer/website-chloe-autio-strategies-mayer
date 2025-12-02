@@ -1,35 +1,9 @@
 'use client';
 import React from 'react';
-import { motion } from 'framer-motion';
+import { useInView } from '@/lib/hooks/useInView';
 import Link from 'next/link';
 import type { Article, PolicyBrief, CaseStudy, Resource as ResourceType } from '@/data/resources';
 import { siteContent } from '@/data/content';
-
-function useInViewAnimation() {
-  const ref = React.useRef<HTMLDivElement | null>(null);
-  const [inView, setInView] = React.useState(false);
-
-  React.useEffect(() => {
-    if (!ref.current) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setInView(true);
-      return;
-    }
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return [ref, inView] as const;
-}
 
 export function CardSkeleton() {
   return (
@@ -56,7 +30,7 @@ interface ResourceCardProps {
 }
 
 function ResourceCardInner({ resource }: { resource: Article | PolicyBrief | CaseStudy | ResourceType }) {
-  const [ref, inView] = useInViewAnimation();
+  const [ref, inView] = useInView<HTMLElement>();
   const { ui } = siteContent;
   
   // Helper function to get the appropriate link
@@ -118,12 +92,9 @@ function ResourceCardInner({ resource }: { resource: Article | PolicyBrief | Cas
   const date = getDate();
   
   return (
-    <motion.article
+    <article
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="rounded-lg border border-ashGray bg-eggshell p-6 shadow-soft flex flex-col h-full transition-all duration-200"
+      className={`rounded-lg border border-ashGray bg-eggshell p-6 shadow-soft flex flex-col h-full transition-all duration-200 animate-on-scroll fade-up ${inView ? 'is-visible' : ''}`}
     >
       {/* Date (if available) */}
       {date && (
@@ -186,11 +157,11 @@ function ResourceCardInner({ resource }: { resource: Article | PolicyBrief | Cas
           </Link>
         )}
       </div>
-    </motion.article>
+    </article>
   );
 }
 
 export function ResourceCard({ resource, isLoading }: ResourceCardProps) {
   if (isLoading || !resource) return <CardSkeleton />;
   return <ResourceCardInner resource={resource} />;
-} 
+}

@@ -9,6 +9,11 @@ export const homeContent = {
     background: {
       image: '/images/stocks/optimized/resources.webp',
       alt: 'Jefferson Memorial night reflection',
+      variants: {
+        small: '/images/stocks/optimized/resources-small.webp',
+        medium: '/images/stocks/optimized/resources-medium.webp',
+        large: '/images/stocks/optimized/resources-large.webp',
+      },
     },
   },
 }; 

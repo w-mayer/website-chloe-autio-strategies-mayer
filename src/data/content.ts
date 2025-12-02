@@ -124,23 +124,29 @@ export const siteContent = {
     ],
   },
 
-  // Contact CTA section
-  contactCTA: {
-    title: 'Ready to Transform Your Organization?',
-    description: "Let's discuss how our expertise in AI policy, technology governance, and regulatory compliance can help your organization navigate the complexities of the digital age.",
-    buttons: {
-      primary: { text: 'Contact Us', href: '/contact' },
-      secondary: { text: 'Learn More', href: '/services' },
+    // Contact CTA section
+    contactCTA: {
+      title: 'Ready to Transform Your Organization?',
+      description:
+        "Let's discuss how our expertise in AI policy, technology governance, and regulatory compliance can help your organization navigate the complexities of the digital age.",
+      buttons: {
+        primary: { text: 'Contact Us', href: '/contact' },
+        secondary: { text: 'Learn More', href: '/services' },
+      },
+      background: {
+        image: '/images/stocks/optimized/cta-background.webp',
+        alt: 'Professional consulting background',
+        variants: {
+          small: '/images/stocks/optimized/cta-background-small.webp',
+          medium: '/images/stocks/optimized/cta-background-medium.webp',
+          large: '/images/stocks/optimized/cta-background-large.webp',
+        },
+      },
+      logo: {
+        image: '/images/logo/optimized/AutioStrategies_Logo_AllWhite_Horz.webp',
+        alt: 'Autio Strategies Logo',
+      },
     },
-    background: {
-      image: '/images/stocks/optimized/cta-background.webp',
-      alt: 'Professional consulting background',
-    },
-    logo: {
-      image: '/images/logo/optimized/AutioStrategies_Logo_AllWhite_Horz.webp',
-      alt: 'Autio Strategies Logo',
-    },
-  },
 
 
 
