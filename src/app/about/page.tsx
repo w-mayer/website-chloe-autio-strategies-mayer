@@ -94,7 +94,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section - Side-by-Side Stacked Layout */}
-      <section className="bg-slate-50 pt-10 pb-16">
+      <section className="bg-slate-50 pt-10 pb-8">
         <div className="container mx-auto px-4">
           {/* Section Header */}
           <div className="text-center mb-12">
@@ -130,14 +130,9 @@ export default function AboutPage() {
                 <p className="text-lg text-primary-600 mb-4 body-text" itemProp="jobTitle">
                   {team.chloe.title}
                 </p>
-                <p className="text-base text-gray dark:text-paynesGray mb-4 body-text" itemProp="description">
+                <p className="text-base text-gray dark:text-paynesGray body-text" itemProp="description">
                   {team.chloe.description}
                 </p>
-                {team.chloe.bio && (
-                  <p className="text-base text-gray dark:text-paynesGray body-text">
-                    {team.chloe.bio}
-                  </p>
-                )}
               </div>
             </div>
 
