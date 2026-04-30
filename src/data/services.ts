@@ -26,7 +26,7 @@ export const services: Service[] = [
         'Actionable recommendations for your organization',
       ],
       methodology: 'We combine proprietary data, expert analysis, and ongoing monitoring to deliver actionable intelligence tailored to your needs.',
-      related: ['research', 'policy-development'],
+      related: ['policy-development', 'strategy'],
       backgroundImage: '/images/stocks/optimized/insights-analysis.webp',
       backgroundVariants: {
         small: '/images/stocks/optimized/insights-analysis-small.webp',
