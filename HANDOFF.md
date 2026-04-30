@@ -116,4 +116,4 @@ These are stock placeholders left in the data files — kept in case the team wa
 
 ## Reference docs in repo
 
-The `docs/` folder has deeper references for specific areas — `NETLIFY_FORMS.md`, `IMAGE_OPTIMIZATION.md`, `HERO_BACKGROUND_CONFIGURATION.md`, `DEPLOYMENT.md`. Useful for edge cases.
+- `docs/resources.md` — recipe for adding articles/policy briefs/case studies to `resources.ts`, including the HTML content format and slug conventions.

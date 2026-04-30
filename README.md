@@ -86,8 +86,7 @@ chloe-autio-strategies/
 │   └── forms.html            # Netlify form detection file
 ├── scripts/                   # Build and utility scripts
 ├── docs/                      # Documentation files
-├── netlify.toml              # Netlify configuration
-└── docs/NETLIFY_FORMS.md     # Form configuration guide
+└── netlify.toml              # Netlify configuration
 ```
 
 ### Key Configuration Files
@@ -350,11 +349,8 @@ npm run build
 
 ## Additional Documentation
 
-For detailed information on specific topics, refer to:
-
-- **[Deployment Guide](docs/DEPLOYMENT.md)** - Comprehensive deployment instructions for Netlify
-- **[Maintenance Guide](docs/MAINTENANCE.md)** - Non-technical user guide for website management
-- **[Netlify Forms Guide](docs/NETLIFY_FORMS.md)** - Form configuration and troubleshooting
+- **[HANDOFF.md](HANDOFF.md)** — maintainer onboarding (stack, local dev, edit-this-to-change-that, forms, deploys, DNS)
+- **[docs/resources.md](docs/resources.md)** — recipe for adding articles/policy briefs/case studies
 
 ## Contributing
 
