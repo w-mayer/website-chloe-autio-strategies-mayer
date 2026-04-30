@@ -51,7 +51,7 @@ export const services: Service[] = [
         'Enhanced policy legitimacy and impact',
       ],
       methodology: 'We design and execute engagement strategies, including roundtables, public consultations, and digital feedback platforms, to capture diverse perspectives and foster collaboration.',
-      related: ['policy-development', 'briefings-talks'],
+      related: ['policy-development', 'presentations-briefings'],
       backgroundImage: '/images/stocks/optimized/events-facilitation.webp',
       backgroundVariants: {
         small: '/images/stocks/optimized/events-facilitation-small.webp',
@@ -145,7 +145,7 @@ export const services: Service[] = [
         'Sustainable, long-term collaborations',
       ],
       methodology: 'We identify potential partners, broker introductions, and support the design and management of joint projects from inception to completion.',
-      related: ['briefings-talks', 'insight-analysis'],
+      related: ['presentations-briefings', 'insight-analysis'],
       backgroundImage: '/images/stocks/optimized/third-party.webp',
       backgroundVariants: {
         small: '/images/stocks/optimized/third-party-small.webp',
