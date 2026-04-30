@@ -239,9 +239,6 @@ export const siteContent = {
     },
   },
 
-  // Privacy page
-  // (Removed privacy hero section)
-
   // Common UI elements
   ui: {
     buttons: {
