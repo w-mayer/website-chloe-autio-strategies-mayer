@@ -27,7 +27,7 @@ export const serviceBackgroundImages: Record<string, ImageConfig> = {
     objectFit: 'cover',
     objectPosition: 'center'
   },
-  'briefings-talks': {
+  'presentations-briefings': {
     src: '/images/stocks/optimized/briefings-talks.webp',
     width: 7008,
     height: 4672,
@@ -35,7 +35,7 @@ export const serviceBackgroundImages: Record<string, ImageConfig> = {
     objectFit: 'cover',
     objectPosition: 'center'
   },
-  'third-party': {
+  'third-party-management': {
     src: '/images/stocks/optimized/third-party.webp',
     width: 4616,
     height: 4000,
@@ -43,7 +43,7 @@ export const serviceBackgroundImages: Record<string, ImageConfig> = {
     objectFit: 'cover',
     objectPosition: 'center'
   },
-  'insights-analysis': {
+  'insight-analysis': {
     src: '/images/stocks/optimized/insights-analysis.webp',
     width: 3778,
     height: 5667,

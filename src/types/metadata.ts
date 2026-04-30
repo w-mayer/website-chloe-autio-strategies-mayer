@@ -3,7 +3,7 @@ export type ServiceSlug =
   | 'research'
   | 'policy-development'
   | 'events-facilitation'
-  | 'briefings-talks'
+  | 'presentations-briefings'
   | 'third-party-management'
   | 'strategy';
 

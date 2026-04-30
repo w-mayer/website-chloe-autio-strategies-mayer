@@ -187,8 +187,8 @@ export const siteMetadata = {
       ],
       url: 'https://autiostrategies.com/services/events-facilitation',
     },
-    'briefings-talks': {
-      title: 'Briefings & Talks Services | AI Policy Consulting',
+    'presentations-briefings': {
+      title: 'Presentations & Briefings Services | AI Policy Consulting',
       description: 'Custom briefings, talks, and educational insights to build internal capacity and foster a culture of responsible innovation.',
       keywords: [
         'AI policy briefings',
@@ -197,7 +197,7 @@ export const siteMetadata = {
         'responsible innovation',
         'policy training',
       ],
-      url: 'https://autiostrategies.com/services/briefings-talks',
+      url: 'https://autiostrategies.com/services/presentations-briefings',
     },
     'strategy': {
       title: 'Strategy & Prioritization Services | AI Policy Consulting',
