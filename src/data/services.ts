@@ -1,3 +1,32 @@
+/**
+ * Service offerings.
+ *
+ * Each entry in `services` becomes:
+ *   - a card on the /services index page, and
+ *   - a detail page at /services/[slug] (route auto-generated from `slug`)
+ *
+ * To add a new service:
+ *   1. Add a new object to the `services` array below (slug must be URL-safe,
+ *      kebab-case, and unique).
+ *   2. Add a matching `services.{slug}` entry in `src/data/metadata.ts` for SEO.
+ *   3. Drop hero background images into /public/images/stocks/optimized/ and
+ *      run `npm run optimize-images` so the small/medium/large .webp variants
+ *      exist before referencing them.
+ *
+ * Field guide:
+ *   - slug                URL segment (also used to look up related services)
+ *   - title / overview    Card heading + one-line summary
+ *   - benefits            Bullet list rendered on the detail page
+ *   - methodology         Paragraph rendered under "Our Methodology"
+ *   - related             Slugs of other services to cross-link at the bottom
+ *                         of the detail page (e.g. ['policy-development'])
+ *   - backgroundImage     Hero image path; `backgroundVariants` provides the
+ *                         responsive small/medium/large sources
+ *   - backgroundPosition  Optional CSS object-position to nudge the hero crop
+ *   - detailedContent     Optional bullets shown above the methodology. HTML
+ *                         is allowed (used for <strong> bold lead-ins) — this
+ *                         is rendered as raw markup so keep it trusted.
+ */
 export interface Service {
   slug: string;
   title: string;

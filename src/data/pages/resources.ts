@@ -1,3 +1,10 @@
+/**
+ * Insights index page hero only.
+ *
+ * The articles/policy briefs/case studies that fill this page live in
+ * `src/data/resources.ts`. Per-article SEO metadata lives in
+ * `src/data/metadata.ts` under `resources.{slug}`.
+ */
 export const resourcesContent = {
   hero: {
     title: 'Insights',

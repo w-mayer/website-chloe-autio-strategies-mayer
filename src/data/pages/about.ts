@@ -1,3 +1,17 @@
+/**
+ * About page content.
+ *
+ * Sections:
+ *   - hero         Page title + responsive background image variants
+ *   - body         "What we do" intro paragraph
+ *   - teamSection  Heading shown above the team grid
+ *   - team         Team bios + headshots, keyed by first name
+ *                  (chloe / samuel / chaerin). To add a team member, add a new
+ *                  key with the same shape and drop their headshot into
+ *                  /public/images/headshot/optimized/ (run
+ *                  `npm run optimize-headshots` first).
+ *   - cta          "Partner with Our Team" call-to-action at the bottom
+ */
 export const aboutContent = {
   hero: {
     title: 'About Us',
