@@ -19,11 +19,19 @@ export const serviceBackgroundImages: Record<string, ImageConfig> = {
     objectFit: 'cover',
     objectPosition: 'center'
   },
-  'events-facilitation': {
+  'facilitation': {
     src: '/images/stocks/optimized/events-facilitation.webp',
     width: 2069,
     height: 2200,
     aspectRatio: '2069/2200', // ~0.94:1 (nearly square)
+    objectFit: 'cover',
+    objectPosition: 'center'
+  },
+  'events': {
+    src: '/images/stocks/optimized/about.webp',
+    width: 6000,
+    height: 4000,
+    aspectRatio: '6000/4000', // 1.5:1
     objectFit: 'cover',
     objectPosition: 'center'
   },
@@ -48,14 +56,6 @@ export const serviceBackgroundImages: Record<string, ImageConfig> = {
     width: 3778,
     height: 5667,
     aspectRatio: '3778/5667', // ~1:1.5 (portrait)
-    objectFit: 'cover',
-    objectPosition: 'center'
-  },
-  'research': {
-    src: '/images/stocks/optimized/research.webp',
-    width: 2400,
-    height: 3000,
-    aspectRatio: '2400/3000', // 4:5 (portrait)
     objectFit: 'cover',
     objectPosition: 'center'
   },

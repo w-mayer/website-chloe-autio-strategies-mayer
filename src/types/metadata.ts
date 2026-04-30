@@ -1,8 +1,8 @@
 export type ServiceSlug =
   | 'insight-analysis'
-  | 'research'
   | 'policy-development'
-  | 'events-facilitation'
+  | 'facilitation'
+  | 'events'
   | 'presentations-briefings'
   | 'third-party-management'
   | 'strategy';

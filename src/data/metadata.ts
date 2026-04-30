@@ -151,18 +151,6 @@ export const siteMetadata = {
       ],
       url: 'https://autiostrategies.com/services/insight-analysis',
     },
-    'research': {
-      title: 'Research Services | AI Policy Consulting',
-      description: 'Comprehensive research and rigorous analysis to support evidence-based policy making and strategic planning.',
-      keywords: [
-        'AI policy research',
-        'policy analysis',
-        'evidence-based policy',
-        'strategic research',
-        'policy benchmarking',
-      ],
-      url: 'https://autiostrategies.com/services/research',
-    },
     'policy-development': {
       title: 'Policy Development Services | AI Policy Consulting',
       description: 'Expert guidance in drafting, refining, and implementing effective policies that align with organizational goals and regulatory requirements.',
@@ -175,17 +163,31 @@ export const siteMetadata = {
       ],
       url: 'https://autiostrategies.com/services/policy-development',
     },
-    'events-facilitation': {
-      title: 'Events & Facilitation Services | AI Policy Consulting',
-      description: 'Strategic facilitation of events, workshops, and stakeholder engagement to ensure policy initiatives are informed, inclusive, and actionable.',
+    'facilitation': {
+      title: 'Facilitation Services | AI Policy Consulting',
+      description: 'Expertly moderated roundtables, public consultations, and stakeholder engagement to align diverse perspectives and inform AI policy decisions.',
+      keywords: [
+        'AI policy facilitation',
+        'stakeholder engagement',
+        'policy roundtables',
+        'public consultations',
+        'multi-stakeholder dialogue',
+        'policy workshops',
+      ],
+      url: 'https://autiostrategies.com/services/facilitation',
+    },
+    'events': {
+      title: 'Event Planning Services | AI Policy Consulting',
+      description: 'Custom event planning and execution from large policy gatherings to intimate salon dinners, designed to expand executive networks and drive substantive AI policy discussions.',
       keywords: [
         'AI policy events',
-        'stakeholder facilitation',
-        'policy workshops',
-        'engagement strategies',
-        'multi-stakeholder processes',
+        'policy salon dinners',
+        'executive networking',
+        'policy convenings',
+        'event programming',
+        'speaker curation',
       ],
-      url: 'https://autiostrategies.com/services/events-facilitation',
+      url: 'https://autiostrategies.com/services/events',
     },
     'presentations-briefings': {
       title: 'Presentations & Briefings Services | AI Policy Consulting',
