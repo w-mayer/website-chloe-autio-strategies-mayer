@@ -82,7 +82,7 @@ Two forms, both handled by Netlify Forms — no backend code, submissions appear
 - **Static stub for detection:** `public/forms.html` — hidden HTML versions of both forms. Netlify scans this file at build to register the forms. **If you add a new field to a React form, add it here too**, otherwise Netlify will reject the submission as a missing field.
 - **Notifications:** configure recipient emails in Netlify dashboard → Site settings → Forms → Form notifications
 - **Spam:** Netlify's built-in honeypot + Akismet are on
-- **Success URLs:** contact → `/contact?success=true`; newsletter → `/?newsletter=success`
+- **On submit:** contact form shows an inline "Thank You" view in place (with Return-to-Home / Explore-Our-Services buttons); newsletter form redirects to `/?newsletter=success`
 
 ## Deploy
 
