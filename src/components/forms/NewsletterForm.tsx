@@ -47,9 +47,7 @@ export function NewsletterForm({ isLoading = false }: { isLoading?: boolean }) {
   async function onSubmit(data: NewsletterFormValues) {
     setIsSubmitting(true);
     setSubmitSuccess(false);
-    
-    console.log('Newsletter signup:', data);
-    
+
     // Create FormData for Netlify
     const formData = new FormData();
     formData.append('form-name', newsletterForm.netlifyName);
@@ -63,7 +61,6 @@ export function NewsletterForm({ isLoading = false }: { isLoading?: boolean }) {
       });
 
       if (response.ok) {
-        console.log('Newsletter signup successful to Netlify');
         setSubmitSuccess(true);
         reset();
         // Redirect to success page after a short delay
