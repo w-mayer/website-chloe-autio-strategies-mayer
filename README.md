@@ -348,10 +348,9 @@ npm run build
 
 For detailed information on specific topics, refer to:
 
-- **[Content Editing Guide](CONTENT_EDITING.md)** - Complete guide for non-technical content updates
-- **[Deployment Guide](DEPLOYMENT.md)** - Comprehensive deployment instructions for Netlify
-- **[Maintenance Guide](MAINTENANCE.md)** - Non-technical user guide for website management
-- **[Netlify Forms Guide](NETLIFY_FORMS.md)** - Form configuration and troubleshooting
+- **[Deployment Guide](docs/DEPLOYMENT.md)** - Comprehensive deployment instructions for Netlify
+- **[Maintenance Guide](docs/MAINTENANCE.md)** - Non-technical user guide for website management
+- **[Netlify Forms Guide](docs/NETLIFY_FORMS.md)** - Form configuration and troubleshooting
 
 ## Contributing
 
