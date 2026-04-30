@@ -2,6 +2,10 @@
 
 A professional AI policy consulting, technology governance, and regulatory compliance advisory website built with Next.js 14, TypeScript, and Tailwind CSS.
 
+## Maintainer onboarding
+
+New to this repo? Start with **[HANDOFF.md](HANDOFF.md)**.
+
 ## Project Overview
 
 Autio Strategies provides expert guidance for government and enterprise leaders navigating the complex landscape of AI policy, technology governance, and regulatory compliance. This website serves as the digital presence for our consulting services, showcasing our expertise and facilitating client engagement.
