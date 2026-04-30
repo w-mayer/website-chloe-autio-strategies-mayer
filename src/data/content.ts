@@ -5,7 +5,7 @@ export const siteContent = {
     tagline: 'AI Policy Consulting & Technology Governance',
     description: 'Professional technology governance and regulatory compliance advisory for government and enterprise organizations',
     email: 'chloe@autiostrategies.com',
-    github: 'https://github.com/w-mayer/chloe-autio-strategies',
+    github: 'https://github.com/w-mayer/website-chloe-autio-strategies-mayer',
     website: 'https://autiostrategies.com',
   },
 

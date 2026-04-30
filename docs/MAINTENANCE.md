@@ -510,7 +510,7 @@ Footer links and information are configured here:
 ```javascript
 footer: {
   builtBy: { text: 'Built by', href: 'https://github.com/w-mayer' },
-  sourceCode: { text: 'The source code is available on', href: 'https://github.com/w-mayer/chloe-autio-strategies' },
+  sourceCode: { text: 'The source code is available on', href: 'https://github.com/w-mayer/website-chloe-autio-strategies-mayer' },
   links: [
     { text: 'Privacy', href: '/privacy' },
     { text: 'Terms', href: '/terms' },
@@ -1167,7 +1167,7 @@ jsonLd: {
   email: 'chloe@autiostrategies.com',
   sameAs: [
     'https://linkedin.com/in/chloeautio',
-    'https://github.com/w-mayer/chloe-autio-strategies',
+    'https://github.com/w-mayer/website-chloe-autio-strategies-mayer',
   ],
 }
 ```

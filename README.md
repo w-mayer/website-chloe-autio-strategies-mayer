@@ -105,8 +105,8 @@ chloe-autio-strategies/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/w-mayer/chloe-autio-strategies.git
-   cd chloe-autio-strategies
+   git clone https://github.com/w-mayer/website-chloe-autio-strategies-mayer.git
+   cd website-chloe-autio-strategies-mayer
    ```
 
 2. **Install dependencies**

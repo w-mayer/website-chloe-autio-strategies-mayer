@@ -330,7 +330,7 @@ export const siteMetadata = {
     url: 'https://autiostrategies.com',
     logo: 'https://autiostrategies.com/images/logo/optimized/AutioStrategies_Logo_FullColor_Horz (1).webp',
     sameAs: [
-      'https://github.com/w-mayer/chloe-autio-strategies',
+      'https://github.com/w-mayer/website-chloe-autio-strategies-mayer',
     ],
     contactPoint: {
       '@type': 'ContactPoint',
