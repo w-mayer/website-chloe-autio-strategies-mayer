@@ -414,8 +414,6 @@ function ContactFormContent({ isLoading = false, onSuccess }: { isLoading?: bool
     }
     
     // Data is already sanitized by Zod schema transforms
-    console.log('Contact form submitted (sanitized):', data);
-    
     // Create FormData for Netlify with sanitized data
     const formData = new FormData();
     formData.append('form-name', contactForm.netlifyName);
@@ -440,7 +438,6 @@ function ContactFormContent({ isLoading = false, onSuccess }: { isLoading?: bool
       });
 
       if (response.ok) {
-        console.log('Form submitted successfully to Netlify');
         setSubmitSuccess(true);
         reset();
         // Show success component immediately instead of redirecting

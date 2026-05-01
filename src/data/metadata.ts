@@ -1,3 +1,31 @@
+/**
+ * SEO / social-sharing metadata for every page.
+ *
+ * This is what populates <title>, <meta name="description">, Open Graph tags,
+ * Twitter Card tags, and the JSON-LD organization schema. Visible on-page copy
+ * lives elsewhere — this file is purely for what search engines and social
+ * previews see.
+ *
+ * Sections:
+ *   - default         Fallback title/description/keywords/og-image for any page
+ *                     that doesn't override them
+ *   - pages           Per-route overrides keyed by page name (home, about,
+ *                     services, contact, resources, privacy, …)
+ *   - services        Per-service-detail-page overrides, keyed by the same
+ *                     slug used in `src/data/services.ts`. KEEP IN SYNC: when
+ *                     you add a service there, add a matching entry here.
+ *   - resources       Per-article overrides, keyed by the same slug used in
+ *                     `src/data/resources.ts`. KEEP IN SYNC the same way.
+ *   - openGraph       Default Open Graph card (used when sharing on LinkedIn,
+ *                     Facebook, Slack, etc.)
+ *   - twitter         Twitter/X card defaults
+ *   - organization    schema.org Organization JSON-LD (rendered into the page
+ *                     for rich-result eligibility). Update logo/contact here
+ *                     if the brand changes.
+ *
+ * Note: the `url` field on each entry should be the absolute canonical URL
+ * (https://autiostrategies.com/...) — used for og:url and link rel="canonical".
+ */
 export const siteMetadata = {
   // Default metadata
   default: {
@@ -151,18 +179,6 @@ export const siteMetadata = {
       ],
       url: 'https://autiostrategies.com/services/insight-analysis',
     },
-    'research': {
-      title: 'Research Services | AI Policy Consulting',
-      description: 'Comprehensive research and rigorous analysis to support evidence-based policy making and strategic planning.',
-      keywords: [
-        'AI policy research',
-        'policy analysis',
-        'evidence-based policy',
-        'strategic research',
-        'policy benchmarking',
-      ],
-      url: 'https://autiostrategies.com/services/research',
-    },
     'policy-development': {
       title: 'Policy Development Services | AI Policy Consulting',
       description: 'Expert guidance in drafting, refining, and implementing effective policies that align with organizational goals and regulatory requirements.',
@@ -175,20 +191,34 @@ export const siteMetadata = {
       ],
       url: 'https://autiostrategies.com/services/policy-development',
     },
-    'events-facilitation': {
-      title: 'Events & Facilitation Services | AI Policy Consulting',
-      description: 'Strategic facilitation of events, workshops, and stakeholder engagement to ensure policy initiatives are informed, inclusive, and actionable.',
+    'facilitation': {
+      title: 'Facilitation Services | AI Policy Consulting',
+      description: 'Expertly moderated roundtables, public consultations, and stakeholder engagement to align diverse perspectives and inform AI policy decisions.',
+      keywords: [
+        'AI policy facilitation',
+        'stakeholder engagement',
+        'policy roundtables',
+        'public consultations',
+        'multi-stakeholder dialogue',
+        'policy workshops',
+      ],
+      url: 'https://autiostrategies.com/services/facilitation',
+    },
+    'events': {
+      title: 'Event Planning Services | AI Policy Consulting',
+      description: 'Custom event planning and execution from large policy gatherings to intimate salon dinners, designed to expand executive networks and drive substantive AI policy discussions.',
       keywords: [
         'AI policy events',
-        'stakeholder facilitation',
-        'policy workshops',
-        'engagement strategies',
-        'multi-stakeholder processes',
+        'policy salon dinners',
+        'executive networking',
+        'policy convenings',
+        'event programming',
+        'speaker curation',
       ],
-      url: 'https://autiostrategies.com/services/events-facilitation',
+      url: 'https://autiostrategies.com/services/events',
     },
-    'briefings-talks': {
-      title: 'Briefings & Talks Services | AI Policy Consulting',
+    'presentations-briefings': {
+      title: 'Presentations & Briefings Services | AI Policy Consulting',
       description: 'Custom briefings, talks, and educational insights to build internal capacity and foster a culture of responsible innovation.',
       keywords: [
         'AI policy briefings',
@@ -197,7 +227,7 @@ export const siteMetadata = {
         'responsible innovation',
         'policy training',
       ],
-      url: 'https://autiostrategies.com/services/briefings-talks',
+      url: 'https://autiostrategies.com/services/presentations-briefings',
     },
     'strategy': {
       title: 'Strategy & Prioritization Services | AI Policy Consulting',
@@ -330,7 +360,7 @@ export const siteMetadata = {
     url: 'https://autiostrategies.com',
     logo: 'https://autiostrategies.com/images/logo/optimized/AutioStrategies_Logo_FullColor_Horz (1).webp',
     sameAs: [
-      'https://github.com/w-mayer/chloe-autio-strategies',
+      'https://github.com/w-mayer/website-chloe-autio-strategies-mayer',
     ],
     contactPoint: {
       '@type': 'ContactPoint',

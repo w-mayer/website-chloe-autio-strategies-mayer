@@ -1,3 +1,32 @@
+/**
+ * Global / shared site content.
+ *
+ * This is the catch-all data file for copy that appears on more than one page,
+ * or that isn't tied to a specific route. Per-page hero copy lives in
+ * `src/data/pages/*.ts`; long-form content (services, articles) lives in
+ * `services.ts` and `resources.ts`; SEO fields live in `metadata.ts`.
+ *
+ * Top-level sections (in order):
+ *   - site            Org name, tagline, contact email, canonical URL
+ *   - navigation      Top-nav links (label + href)
+ *   - services        Heading + "Learn More" label for the homepage services strip
+ *   - clientLogos     Partner-logo strip on the homepage (drop new .webp into
+ *                     /public/images/partner_logos/optimized/ and add an entry)
+ *   - testimonials    PLACEHOLDER quotes (Alex Johnson / Maria Lee / Sam Patel) —
+ *                     stub content kept so the section can be populated later
+ *   - valueProposition  "Our Value Add" cards on the homepage
+ *   - contactCTA      "Ready to Transform Your Organization?" block (homepage + others)
+ *   - footer          Email / LinkedIn / phone + footer logo
+ *   - header          Header logo + mobile menu a11y labels
+ *   - resources       Per-resource title/subtitle overrides (keyed by slug)
+ *   - forms           Contact + newsletter form labels, placeholders, validation
+ *                     messages, and Netlify form names. NOTE: if you add a new
+ *                     field to a React form, also add it to /public/forms.html
+ *                     so Netlify registers it at build time.
+ *   - ui              Shared UI strings: button labels, loading states, error
+ *                     messages, ARIA labels, generic page titles, section
+ *                     headings, share-this-article copy, etc.
+ */
 export const siteContent = {
   // Global site information
   site: {
@@ -5,7 +34,7 @@ export const siteContent = {
     tagline: 'AI Policy Consulting & Technology Governance',
     description: 'Professional technology governance and regulatory compliance advisory for government and enterprise organizations',
     email: 'chloe@autiostrategies.com',
-    github: 'https://github.com/w-mayer/chloe-autio-strategies',
+    github: 'https://github.com/w-mayer/website-chloe-autio-strategies-mayer',
     website: 'https://autiostrategies.com',
   },
 
@@ -84,6 +113,9 @@ export const siteContent = {
   },
 
   // Testimonials section
+  // NOTE: items below are PLACEHOLDER stub quotes (Alex Johnson / Maria Lee /
+  // Sam Patel). Replace with real client quotes before going public, or remove
+  // the section from the homepage if not used.
   testimonials: {
     title: 'What Our Clients Say',
     items: [
@@ -185,6 +217,10 @@ export const siteContent = {
   },
 
   // Forms
+  // Both forms are submitted via Netlify Forms (no backend code). The
+  // `netlifyName` values below MUST match the corresponding hidden form names
+  // in /public/forms.html — that file is what Netlify scans at build to
+  // register the forms and their fields.
   forms: {
     contact: {
       title: 'Contact Form',
@@ -238,9 +274,6 @@ export const siteContent = {
       error: 'Please enter a valid email address.',
     },
   },
-
-  // Privacy page
-  // (Removed privacy hero section)
 
   // Common UI elements
   ui: {

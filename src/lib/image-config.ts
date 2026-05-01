@@ -19,7 +19,7 @@ export const serviceBackgroundImages: Record<string, ImageConfig> = {
     objectFit: 'cover',
     objectPosition: 'center'
   },
-  'events-facilitation': {
+  'facilitation': {
     src: '/images/stocks/optimized/events-facilitation.webp',
     width: 2069,
     height: 2200,
@@ -27,7 +27,15 @@ export const serviceBackgroundImages: Record<string, ImageConfig> = {
     objectFit: 'cover',
     objectPosition: 'center'
   },
-  'briefings-talks': {
+  'events': {
+    src: '/images/stocks/optimized/about.webp',
+    width: 6000,
+    height: 4000,
+    aspectRatio: '6000/4000', // 1.5:1
+    objectFit: 'cover',
+    objectPosition: 'center'
+  },
+  'presentations-briefings': {
     src: '/images/stocks/optimized/briefings-talks.webp',
     width: 7008,
     height: 4672,
@@ -35,7 +43,7 @@ export const serviceBackgroundImages: Record<string, ImageConfig> = {
     objectFit: 'cover',
     objectPosition: 'center'
   },
-  'third-party': {
+  'third-party-management': {
     src: '/images/stocks/optimized/third-party.webp',
     width: 4616,
     height: 4000,
@@ -43,19 +51,11 @@ export const serviceBackgroundImages: Record<string, ImageConfig> = {
     objectFit: 'cover',
     objectPosition: 'center'
   },
-  'insights-analysis': {
+  'insight-analysis': {
     src: '/images/stocks/optimized/insights-analysis.webp',
     width: 3778,
     height: 5667,
     aspectRatio: '3778/5667', // ~1:1.5 (portrait)
-    objectFit: 'cover',
-    objectPosition: 'center'
-  },
-  'research': {
-    src: '/images/stocks/optimized/research.webp',
-    width: 2400,
-    height: 3000,
-    aspectRatio: '2400/3000', // 4:5 (portrait)
     objectFit: 'cover',
     objectPosition: 'center'
   },

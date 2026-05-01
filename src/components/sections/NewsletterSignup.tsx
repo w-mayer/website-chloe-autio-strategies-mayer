@@ -48,7 +48,6 @@ export function NewsletterSignup() {
       });
 
       if (response.ok) {
-        console.log('Newsletter signup successful to Netlify');
         setSubmitted(true);
         setEmail('');
         // Redirect to success page after a short delay
