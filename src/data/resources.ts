@@ -1,3 +1,31 @@
+/**
+ * Insights / resources content.
+ *
+ * Powers the /insights index page and each /insights/[slug] detail page.
+ * Four content types are defined; today only `articles` is populated and the
+ * other three are intentionally empty arrays so the team can drop content in
+ * later without code changes.
+ *
+ * Exports:
+ *   - authors         Reusable author/source bios. `articles[].author` references
+ *                     entries here by index (e.g., authors[1] = WSJ).
+ *   - articles        News-style insights. Items with `featured: true` surface
+ *                     on the homepage / featured sections. `externalUrl`, when
+ *                     present, makes the card link out instead of rendering a
+ *                     local detail page (used for syndicated WSJ/POLITICO/Fortune
+ *                     coverage).
+ *   - policyBriefs    PLACEHOLDER — empty; type defined so briefs can be added
+ *                     without code changes. Each brief also needs a matching
+ *                     `resources.{slug}` entry in `metadata.ts`.
+ *   - caseStudies     PLACEHOLDER — empty; same pattern as policyBriefs.
+ *   - resources       PLACEHOLDER — empty; generic external links (reports,
+ *                     toolkits, datasets, guidelines) for the resources library.
+ *
+ * To add a new article:
+ *   1. Append to `articles` with a unique kebab-case `slug`.
+ *   2. Add a `resources.{slug}` entry in `src/data/metadata.ts` for SEO.
+ *   3. Use ISO `YYYY-MM-DD` for `date` (sorting + display rely on it).
+ */
 export interface Author {
   name: string;
   title: string;

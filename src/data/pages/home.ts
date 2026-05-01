@@ -1,3 +1,14 @@
+/**
+ * Homepage hero only.
+ *
+ * The rest of the homepage (testimonials, value-prop cards, partner logos,
+ * "Ready to Transform" CTA) is shared content and lives in
+ * `src/data/content.ts`. The services strip pulls from `src/data/services.ts`.
+ *
+ * `background.image` is the default hero source; `variants` provides
+ * responsive small/medium/large .webp paths. Drop new images into
+ * /public/images/stocks/optimized/ and run `npm run optimize-images`.
+ */
 export const homeContent = {
   hero: {
     title: 'AI Policy Solutions',

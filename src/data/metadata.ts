@@ -1,3 +1,31 @@
+/**
+ * SEO / social-sharing metadata for every page.
+ *
+ * This is what populates <title>, <meta name="description">, Open Graph tags,
+ * Twitter Card tags, and the JSON-LD organization schema. Visible on-page copy
+ * lives elsewhere — this file is purely for what search engines and social
+ * previews see.
+ *
+ * Sections:
+ *   - default         Fallback title/description/keywords/og-image for any page
+ *                     that doesn't override them
+ *   - pages           Per-route overrides keyed by page name (home, about,
+ *                     services, contact, resources, privacy, …)
+ *   - services        Per-service-detail-page overrides, keyed by the same
+ *                     slug used in `src/data/services.ts`. KEEP IN SYNC: when
+ *                     you add a service there, add a matching entry here.
+ *   - resources       Per-article overrides, keyed by the same slug used in
+ *                     `src/data/resources.ts`. KEEP IN SYNC the same way.
+ *   - openGraph       Default Open Graph card (used when sharing on LinkedIn,
+ *                     Facebook, Slack, etc.)
+ *   - twitter         Twitter/X card defaults
+ *   - organization    schema.org Organization JSON-LD (rendered into the page
+ *                     for rich-result eligibility). Update logo/contact here
+ *                     if the brand changes.
+ *
+ * Note: the `url` field on each entry should be the absolute canonical URL
+ * (https://autiostrategies.com/...) — used for og:url and link rel="canonical".
+ */
 export const siteMetadata = {
   // Default metadata
   default: {

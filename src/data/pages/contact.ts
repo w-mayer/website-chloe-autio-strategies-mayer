@@ -1,3 +1,10 @@
+/**
+ * Contact page hero only.
+ *
+ * The contact form itself (labels, placeholders, validation messages, and
+ * Netlify form name) is in `src/data/content.ts` under `forms.contact`.
+ * Footer email/phone/LinkedIn live there too under `footer.contact`.
+ */
 export const contactContent = {
   hero: {
     title: 'Contact Us',
