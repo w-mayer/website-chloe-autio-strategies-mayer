@@ -1,232 +1,123 @@
-import React from 'react';
-import { Metadata } from 'next';
-import { AuthorityHeading } from '@/components/ui';
-import Image from 'next/image';
-import { aboutContent } from '@/data/pages/about';
-import { siteMetadata } from '@/data/metadata';
+import Link from 'next/link';
+import BioToggle from './BioToggle';
 
-export const metadata: Metadata = {
-  title: siteMetadata.pages.about.title,
-  description: siteMetadata.pages.about.description,
-  keywords: siteMetadata.pages.about.keywords,
-  openGraph: {
-    title: siteMetadata.pages.about.title,
-    description: siteMetadata.pages.about.description,
-    url: siteMetadata.pages.about.url,
-    siteName: siteMetadata.default.siteName,
-    images: [siteMetadata.default.image],
-    locale: siteMetadata.default.locale,
-    type: 'website' as const,
-  },
-  alternates: {
-    canonical: siteMetadata.pages.about.url,
-  },
+const linkedInPath = "M19 0H5a5 5 0 0 0-5 5v14a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z";
+
+export const metadata = {
+  title: 'About — Autio Strategies',
+  description: 'Built at the intersection of technology and policy. Over a decade of global experience supporting stakeholders across industries.',
 };
 
+const partnerLogos = [
+  { src: '/images/partner_logos/optimized/Cohere-Logo.webp', alt: 'Cohere' },
+  { src: '/images/partner_logos/optimized/DoD-Logo-Stacked.webp', alt: 'Department of Defense' },
+  { src: '/images/partner_logos/optimized/Google_Cloud_Platform-Logo.webp', alt: 'Google Cloud' },
+  { src: '/images/partner_logos/optimized/Google_DeepMind_logo.webp', alt: 'Google DeepMind' },
+  { src: '/images/partner_logos/optimized/Meta-Logo.webp', alt: 'Meta' },
+  { src: '/images/partner_logos/optimized/OCED.webp', alt: 'OECD' },
+  { src: '/images/partner_logos/optimized/Uber_logo_2018.webp', alt: 'Uber' },
+  { src: '/images/partner_logos/optimized/f_nist-logo-brand-black.webp', alt: 'NIST' },
+];
+
 export default function AboutPage() {
-  const { hero, body, teamSection, team, cta } = aboutContent;
-  
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section with Background Image */}
-      <section className="relative bg-primary h-[30vh] min-h-[250px] flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={hero.background.image}
-            alt={hero.background.alt}
-            fill
-            className="object-cover"
-            priority={true}
-            quality={90}
-            sizes="100vw"
-          />
-          {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black/50 z-10"></div>
-        </div>
-        
-        {/* Content */}
-        <div className="container mx-auto px-4 text-center relative z-20">
-          <AuthorityHeading
-            size="h1"
-            className="font-bold mb-6 heading text-white"
-            enableHighlight={true}
-            style={{
-              fontSize: 'clamp(1.75rem, 4.5vw, 2.75rem)',
-              lineHeight: '1.2',
-              margin: '0 0 1.5rem 0',
-              padding: '0.5rem 0 0.5rem 0'
-            }}
-          >
-            {hero.title}
-          </AuthorityHeading>
+    <>
+      <section className="page-hero-wrap">
+        <div className="container">
+          <div className="breadcrumb">— About Us</div>
+          <h1>Built at the intersection<br />of <em>technology and policy.</em></h1>
+          <p className="lede">Autio Strategies brings over a decade of global experience supporting stakeholders across industries to keep up — and make the most — of AI evolution.</p>
         </div>
       </section>
 
-      {/* Body Text Section */}
-      <section className="container mx-auto px-4 pt-12 pb-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-8 heading">
-            {body.title}
-          </h2>
-          <p className="text-lg md:text-xl text-gray dark:text-paynesGray leading-relaxed body-text">
-            {body.description}
-          </p>
+      <section className="story-block">
+        <div className="container-narrow">
+          <div className="section-eyebrow">Our story</div>
+          <h2>A firm built to <em>translate</em> between two worlds.</h2>
+          <p>Autio Strategies was founded by Chloe Autio after more than a decade working at the intersection of AI policy, governance, and product — across major AI labs, enterprise tech firms, and policy organizations on both coasts. The firm carries forward the work she started at her previous practice, Tehda, with a sharper focus and a broader team.</p>
+
+          <p style={{ marginTop: '24px' }}>Today, Autio Strategies serves clients ranging from emerging labs entering the policy conversation for the first time, to Fortune 50s navigating multi-jurisdictional obligations, to government agencies implementing the President&rsquo;s AI Action Plan.</p>
         </div>
       </section>
 
-      {/* Team Section - Side-by-Side Stacked Layout */}
-      <section className="bg-slate-50 pt-10 pb-8">
-        <div className="container mx-auto px-4">
-          {/* Section Header */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary heading">
-              {teamSection.title}
-            </h2>
+      <section className="block" id="our-team">
+        <div className="container">
+          <div className="block-head-centered">
+            <div className="section-eyebrow">Our Team</div>
           </div>
-
-          {/* Stacked Team Members */}
-          <div className="max-w-5xl mx-auto space-y-16">
-            {/* Chloe Autio Row */}
-            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start" itemScope itemType="https://schema.org/Person">
-              {/* Chloe Headshot */}
-              <div className="flex-shrink-0">
-                <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-lg overflow-hidden shadow-lg bg-white">
-                  <Image
-                    src={team.chloe.image.src}
-                    alt={team.chloe.image.alt}
-                    fill
-                    className="object-cover"
-                    priority={true}
-                    quality={90}
-                    sizes="(max-width: 768px) 256px, 288px"
-                  />
-                </div>
+          <div className="team-grid">
+            <div className="team-card" id="chloe">
+              <div className="team-photo">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/headshot/optimized/autio_headshot-large.jpg" alt="Chloe Autio" />
               </div>
-              
-              {/* Chloe Bio */}
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2 heading" itemProp="name">
-                  {team.chloe.name}
-                </h3>
-                <p className="text-lg text-primary-600 mb-4 body-text" itemProp="jobTitle">
-                  {team.chloe.title}
-                </p>
-                <p className="text-base text-gray dark:text-paynesGray body-text" itemProp="description">
-                  {team.chloe.description}
-                </p>
+              <h4>Chloe Autio</h4>
+              <div className="role">
+                <span>Founder &amp; CEO</span>
+                <a className="role-li" href="https://www.linkedin.com/in/chloeautio/" target="_blank" rel="noopener noreferrer" aria-label="Chloe Autio on LinkedIn">
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d={linkedInPath} />
+                  </svg>
+                </a>
               </div>
+              <BioToggle id="chloe">Chloe Autio is a technology policy expert with nearly a decade of experience advising organizations on AI policy and governance. Through her practice Autio Strategies, she provides strategic guidance to clients including government bodies, Fortune 50 companies, large AI labs and startups, and leading trade associations. Chloe&rsquo;s consultancy is built on a solid foundation, including her pivotal role in shaping Intel Corps emerging technology policy portfolio and developing their Responsible AI program from its beginning. Chloe is an Adjunct AI Policy Advisor at the Institute for Security and Technology, a Faculty Lecturer at the Future of Privacy Forum, and previously chaired the board of Humane Intelligence. Her insights are frequently sought after by both government and civil society organizations, and her expertise has been highlighted in prominent media outlets such as the Wall Street Journal, Axios, POLITICO, and Bloomberg, among others. She holds an economics degree from UC Berkeley, where she studied a range of topics related to technology policy, data ethics, and the social implications of computing.</BioToggle>
             </div>
-
-            {/* Samuel Wells Row */}
-            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start" itemScope itemType="https://schema.org/Person">
-              {/* Samuel Headshot */}
-              <div className="flex-shrink-0">
-                <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-lg overflow-hidden shadow-lg bg-white">
-                  <Image
-                    src={team.samuel.image.src}
-                    alt={team.samuel.image.alt}
-                    fill
-                    className="object-cover"
-                    priority={true}
-                    quality={90}
-                    sizes="(max-width: 768px) 256px, 288px"
-                  />
-                </div>
+            <div className="team-card" id="sam">
+              <div className="team-photo">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/headshot/optimized/wells_headshot-large.webp" alt="Samuel Wells" />
               </div>
-              
-              {/* Samuel Bio */}
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2 heading" itemProp="name">
-                  {team.samuel.name}
-                </h3>
-                <p className="text-lg text-primary-600 mb-4 body-text" itemProp="jobTitle">
-                  {team.samuel.title}
-                </p>
-                <p className="text-base text-gray dark:text-paynesGray body-text" itemProp="description">
-                  {team.samuel.description}
-                </p>
+              <h4>Samuel Wells</h4>
+              <div className="role">
+                <span>Policy &amp; Engagement Manager</span>
+                <a className="role-li" href="https://www.linkedin.com/in/samuel-wells-b5034420a/" target="_blank" rel="noopener noreferrer" aria-label="Samuel Wells on LinkedIn">
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d={linkedInPath} />
+                  </svg>
+                </a>
               </div>
+              <BioToggle id="sam">Samuel Wells holds a wealth of policy and engagement experience at the intersection of science, technology, and government. He manages much of the firm&rsquo;s client engagements and leads on events and public engagement. Before joining Autio Strategies, he served in the White House on Vice President Kamala Harris&rsquo; team. Prior to that, Sam held a range of research and policy roles, including as a research assistant at the University of Chicago&rsquo;s Health Lab, where he contributed to the Transform911 initiative aimed at modernizing the nation&rsquo;s emergency response system. He has worked for multiple members of Congress, the Office of the Science and Technology Adviser to the Secretary of State, and the Director of National Intelligence&rsquo;s Private Sector Group. Sam holds a BA in Public Policy &amp; Leadership from the University of Virginia.</BioToggle>
             </div>
-
-            {/* Chaerin Lim Row */}
-            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start" itemScope itemType="https://schema.org/Person">
-              {/* Chaerin Headshot */}
-              <div className="flex-shrink-0">
-                <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-lg overflow-hidden shadow-lg bg-white">
-                  <Image
-                    src={team.chaerin.image.src}
-                    alt={team.chaerin.image.alt}
-                    fill
-                    className="object-cover"
-                    priority={true}
-                    quality={90}
-                    sizes="(max-width: 768px) 256px, 288px"
-                  />
-                </div>
+            <div className="team-card" id="chaerin">
+              <div className="team-photo">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/headshot/optimized/lim_headshot-large.webp" alt="Chaerin Lim" style={{ objectPosition: 'center top' }} />
               </div>
-              
-              {/* Chaerin Bio */}
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2 heading" itemProp="name">
-                  {team.chaerin.name}
-                </h3>
-                <p className="text-lg text-primary-600 mb-4 body-text" itemProp="jobTitle">
-                  {team.chaerin.title}
-                </p>
-                <p className="text-base text-gray dark:text-paynesGray body-text" itemProp="description">
-                  {team.chaerin.description}
-                </p>
+              <h4>Chaerin Lim</h4>
+              <div className="role">
+                <span>AI Policy Manager</span>
+                <a className="role-li" href="https://www.linkedin.com/in/chaerin-lim/" target="_blank" rel="noopener noreferrer" aria-label="Chaerin Lim on LinkedIn">
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d={linkedInPath} />
+                  </svg>
+                </a>
               </div>
+              <BioToggle id="chaerin">Chaerin Lim brings deep expertise in AI governance and technology policy across three continents. She manages client relationships on behalf of the firm and provides overall substantive analysis to inform strategy and decisionmaking. Her career has focused on bridging technical depth and policy to translate complex AI concepts into actionable guidance for senior stakeholders in governments, international organizations, and industry. Prior to joining Autio Strategies, Chaerin served as an AI Policy Consultant at the OECD, where she authored sector-specific AI policy reports examining how governments and industry can responsibly deploy AI across critical domains. At Kakao, she developed South Korea&rsquo;s first corporate guidelines for responsible AI and advised senior leadership on emerging sociotechnical risks and global AI governance frameworks. Her earlier work at the World Bank, Tremau, and Humane Intelligence spans AI safety, online safety, and technology policy for development, giving her a uniquely global perspective on the challenges facing the AI ecosystem today. Chaerin holds an MPP from the Harvard Kennedy School and a BS in Computer Science with a secondary major in Literature and Creative Writing from New York University Abu Dhabi.</BioToggle>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="text-center py-8 bg-slate-50">
-        <h2 className="text-2xl font-bold text-primary mb-4 heading">{cta.title}</h2>
-        <p className="text-lg text-gray dark:text-paynesGray mb-6 max-w-2xl mx-auto body-text">
-          {cta.description}
-        </p>
-        <a
-          href={cta.button.href}
-          className="btn-primary btn-primary-cta inline-block mb-8"
-          aria-label={`${cta.button.text} with Autio Strategies Team`}
-        >
-          {cta.button.text}
-        </a>
+      <section className="trusted-section">
+        <div className="trusted-label">— Trusted by leading organizations shaping AI policy —</div>
+        <div className="marquee">
+          <div className="marquee-track">
+            {[...partnerLogos, ...partnerLogos].map((logo, i) => (
+              <div className="logo-tile" key={i}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={logo.src} alt={logo.alt} />
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
-      {/* Schema.org Organization JSON-LD for SEO */}
-      <script type="application/ld+json" suppressHydrationWarning>
-        {JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'Organization',
-          name: 'Autio Strategies',
-          description: 'AI policy consulting and technology governance experts providing strategic guidance to government bodies, Fortune 50 companies, and leading organizations.',
-          url: siteMetadata.default.url,
-          logo: `${siteMetadata.default.url}/images/logo/optimized/AutioStrategies_Logo_FullColor_Horz (1).webp`,
-          employee: [
-            {
-              '@type': 'Person',
-              name: 'Chloe Autio',
-              jobTitle: 'Founder & CEO',
-              description: 'Technology policy expert specializing in AI policy, governance, and regulatory strategy.',
-              alumniOf: 'University of California, Berkeley',
-              hasCredential: 'B.A. in Economics'
-            },
-            {
-              '@type': 'Person',
-              name: 'Samuel Wells',
-              jobTitle: 'Policy Manager',
-              description: 'Policy expert with experience in government relations and technology policy.',
-              alumniOf: 'University of Virginia',
-              hasCredential: 'B.A. in Public Policy & Leadership'
-            }
-          ]
-        })}
-      </script>
-    </div>
+      <section className="cta-strip">
+        <div className="container">
+          <h2>Want to know more about<br /><em>how we work?</em></h2>
+          <Link className="btn-primary" href="/contact">Get in touch →</Link>
+        </div>
+      </section>
+    </>
   );
 }

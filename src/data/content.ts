@@ -143,7 +143,7 @@ export const siteContent = {
     cards: [
       {
         title: 'AI Policy Expertise',
-        description: 'Proven track record of advising governments, Fortune 500s, and startups on responsible AI, data governance, and emerging tech policy.',
+        description: 'Proven track record of advising governments, Fortune 50s, and startups on responsible AI, data governance, and emerging tech policy.',
       },
       {
         title: 'Global Perspectives',

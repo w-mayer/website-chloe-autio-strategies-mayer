@@ -76,7 +76,7 @@ export const siteMetadata = {
     },
     about: {
       title: 'About Us | AI Policy Consulting & Technology Governance',
-      description: "Meet the Autio Strategies team - Chloe Autio (Founder & CEO) and Samuel Wells (Policy Manager) - experts in AI policy consulting, technology governance, and regulatory compliance.",
+      description: "Meet the Autio Strategies team - Chloe Autio (Founder & CEO) and Samuel Wells (Policy & Engagement Manager) - experts in AI policy consulting, technology governance, and regulatory compliance.",
       keywords: [
         'AI policy consulting',
         'technology governance',

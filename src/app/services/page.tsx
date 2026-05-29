@@ -1,27 +1,39 @@
-import { services } from '@/data/services';
-import React from 'react';
-import type { Metadata } from 'next';
-import ServicesGridClient from './ServicesGridClient';
-import { siteMetadata } from '@/data/metadata';
+import Link from 'next/link';
+import ServicesAccordion from './ServicesAccordion';
 
-export const metadata: Metadata = {
-  title: siteMetadata.pages.services.title,
-  description: siteMetadata.pages.services.description,
-  keywords: siteMetadata.pages.services.keywords,
-  openGraph: {
-    title: siteMetadata.pages.services.title,
-    description: siteMetadata.pages.services.description,
-    url: siteMetadata.pages.services.url,
-    siteName: siteMetadata.default.siteName,
-    images: [siteMetadata.default.image],
-    locale: siteMetadata.default.locale,
-    type: 'website',
-  },
-  alternates: {
-    canonical: siteMetadata.pages.services.url,
-  },
+export const metadata = {
+  title: 'Services — Autio Strategies',
+  description: 'AI policy and governance services: analysis & intel, policy strategy, governance & operations, and engagement & education.',
 };
 
 export default function ServicesPage() {
-  return <ServicesGridClient services={services} />;
-} 
+  return (
+    <>
+      {/* PAGE HERO */}
+      <section className="page-hero-wrap">
+        <div className="container">
+          <div className="breadcrumb">— Our Services</div>
+          <h1>We partner with organizations to navigate AI policy with <em>clarity and conviction.</em></h1>
+          <p className="lede">Shaping substantive positions. Sharpening strategy. Building the internal structures and external relationships that let good decisions about AI scale.</p>
+        </div>
+      </section>
+
+      {/* ACCORDION */}
+      <section className="block">
+        <div className="container-wide">
+          <ServicesAccordion />
+        </div>
+      </section>
+
+      {/* CLOSING */}
+      <section className="closing">
+        <div className="container">
+          <h2>Every organization&rsquo;s AI posture is different.<br />So is <em>our advice.</em></h2>
+          <div style={{ marginTop: '32px' }}>
+            <Link className="btn-primary" href="/contact">Start a conversation →</Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

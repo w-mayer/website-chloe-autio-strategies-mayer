@@ -63,3 +63,6 @@ Desktop.ini
 
 # ESLint cache
 .eslintcache
+
+# Claude Code project config
+.claude/
