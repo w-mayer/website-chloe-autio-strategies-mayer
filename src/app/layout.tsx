@@ -1,41 +1,58 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans } from "next/font/google";
+import { DM_Sans, Cormorant, Fraunces } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { ErrorBoundary } from "@/components/ui";
-import { siteMetadata } from "@/data/metadata";
+import SiteNav from "@/components/layout/SiteNav";
+import SiteFooter from "@/components/layout/SiteFooter";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["300", "400", "500", "700"],
   variable: "--font-dm-sans",
   display: "swap",
 });
 
+const cormorant = Cormorant({
+  subsets: ["latin"],
+  // Skipping 300 (too thin). Loading 500/600/700 so we can bump weights
+  // selectively where Cormorant's base needs more visual weight to read well.
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+
+// Fraunces is used SPECIFICALLY for text inside cards (layer-card, profile-card,
+// team-card, quote-card, value-card, service-item) — its sturdier letterforms
+// read better at the smaller sizes used inside contained UI elements.
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: siteMetadata.default.title,
-  description: siteMetadata.default.description,
-  keywords: siteMetadata.default.keywords,
-  authors: [{ name: siteMetadata.default.siteName }],
+  title: "Autio Strategies",
+  description: "Navigate AI evolution with confidence. A decade of global experience helping labs, enterprises, governments, and intergovernmental bodies keep up with — and make the most of — how AI is reshaping their work.",
+  keywords: ["AI policy", "AI governance", "technology policy", "government affairs", "regulatory strategy", "responsible AI"],
+  authors: [{ name: "Autio Strategies" }],
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
-    apple: '/images/logo/optimized/AutioStrategies_Logo_FullColor_JustMark.webp',
   },
   manifest: '/site.webmanifest',
   openGraph: {
-    title: siteMetadata.default.title,
-    description: siteMetadata.default.description,
-    url: siteMetadata.default.url,
-    siteName: siteMetadata.default.siteName,
-    images: [siteMetadata.default.image],
-    locale: siteMetadata.default.locale,
-    type: 'website' as const,
+    title: "Autio Strategies",
+    description: "Navigate AI evolution with confidence. Partnership-focused. Premier guidance. Wherever you are on the journey.",
+    url: "https://autiostrategies.com",
+    siteName: "Autio Strategies",
+    locale: "en_US",
+    type: 'website',
   },
-  metadataBase: new URL(siteMetadata.default.url),
+  metadataBase: new URL("https://autiostrategies.com"),
   alternates: {
-    canonical: siteMetadata.default.url,
+    canonical: "https://autiostrategies.com",
   },
 };
 
@@ -50,15 +67,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={dmSans.variable}>
+    <html lang="en" className={`${dmSans.variable} ${cormorant.variable} ${fraunces.variable}`}>
       <head>
-        {/* Additional favicon declarations for maximum compatibility */}
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="48x48" href="/favicon/favicon-48x48.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/logo/optimized/AutioStrategies_Logo_FullColor_JustMark.webp" />
-        <meta name="theme-color" content="#000000" />
-        
+        <meta name="theme-color" content="#FAFAF2" />
         <script
           type="application/ld+json"
           suppressHydrationWarning
@@ -67,32 +81,21 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Organization',
               name: 'Autio Strategies',
-              url: siteMetadata.default.url,
-              logo: `${siteMetadata.default.url}/images/logo/optimized/AutioStrategies_Logo_FullColor_Horz (1).webp`,
-              description: 'Professional AI policy consulting, technology governance, and regulatory compliance advisory for government and enterprise organizations.',
-              sameAs: [
-                // LinkedIn removed
-              ],
+              url: 'https://autiostrategies.com',
+              description: 'AI policy consulting, governance strategy, and regulatory advisory for labs, enterprises, and governments.',
               contactPoint: [{
                 '@type': 'ContactPoint',
                 email: 'chloe@autiostrategies.com',
                 contactType: 'customer support',
-                url: `${siteMetadata.default.url}/contact`
               }]
             })
           }}
         />
       </head>
       <body>
-          <ErrorBoundary>
-            <div className="relative flex min-h-screen flex-col">
-              <Header />
-              <main id="main-content" role="main" tabIndex={-1} className="flex-1 focus:outline-none">
-                {children}
-              </main>
-              <Footer />
-            </div>
-          </ErrorBoundary>
+        <SiteNav />
+        <main>{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );

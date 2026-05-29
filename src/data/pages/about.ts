@@ -44,11 +44,11 @@ export const aboutContent = {
     },
     samuel: {
       name: 'Samuel Wells',
-      title: 'Policy Manager',
+      title: 'Policy & Engagement Manager',
       description: 'Samuel Wells holds a wealth of policy and engagement experience at the intersection of science, technology, and government. Before joining Autio Strategies, he served in the White House on Vice President Kamala Harris\' team. Prior to that, Sam held a range of research and policy roles, including as a research assistant at the University of Chicago\'s Health Lab, where he contributed to the Transform911 initiative aimed at modernizing the nation\'s emergency response system. He has also interned for multiple members of Congress, the Office of the Science and Technology Adviser to the Secretary of State, and the Director of National Intelligence\'s Private Sector Group. Sam holds a BA in Public Policy & Leadership from the University of Virginia.',
       image: {
         src: '/images/headshot/optimized/wells_headshot.webp',
-        alt: 'Samuel Wells, Policy Manager at Autio Strategies',
+        alt: 'Samuel Wells, Policy & Engagement Manager at Autio Strategies',
       },
     },
     chaerin: {
