@@ -32,7 +32,7 @@ export default function ContactPage() {
               <div>
                 <div className="contact-info-row">
                   <div className="lbl">Email</div>
-                  <div className="val"><a href="mailto:chloe@autiostrategies.com">chloe@autiostrategies.com</a></div>
+                  <div className="val"><a href="mailto:info@autiostrategies.com">info@autiostrategies.com</a></div>
                 </div>
                 <div className="contact-info-row">
                   <div className="lbl">Phone</div>

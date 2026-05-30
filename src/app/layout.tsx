@@ -26,7 +26,7 @@ const cormorant = Cormorant({
 // read better at the smaller sizes used inside contained UI elements.
 const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
   variable: "--font-fraunces",
   display: "swap",
@@ -85,7 +85,7 @@ export default function RootLayout({
               description: 'AI policy consulting, governance strategy, and regulatory advisory for labs, enterprises, and governments.',
               contactPoint: [{
                 '@type': 'ContactPoint',
-                email: 'chloe@autiostrategies.com',
+                email: 'info@autiostrategies.com',
                 contactType: 'customer support',
               }]
             })

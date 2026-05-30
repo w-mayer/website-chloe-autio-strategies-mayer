@@ -365,7 +365,7 @@ export const siteMetadata = {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
-      email: 'chloe@autiostrategies.com',
+      email: 'info@autiostrategies.com',
     },
   },
 }; 

@@ -85,7 +85,7 @@ export default function Home() {
                 <h3>Engagement &amp; Education</h3>
                 <div className="layer-sub">Bringing people together, briefing leaders, and building AI fluency where it matters.</div>
                 <p>Events, presentations &amp; briefings, AI 101 for boards and teams, and one-on-one coaching for execs and small businesses for how to make the most of AI tools.</p>
-                <span className="more">Explore the outward-facing layer</span>
+                <span className="more">Explore the engagement layer</span>
               </div>
             </Link>
           </div>

@@ -136,10 +136,10 @@ export class ErrorBoundary extends Component<Props, State> {
               <p className="text-xs text-gray-500 dark:text-gray-400">
                 If this problem continues, please contact{' '}
                 <a
-                  href="mailto:chloe@autiostrategies.com"
+                  href="mailto:info@autiostrategies.com"
                   className="text-primary-600 dark:text-primary-400 hover:underline"
                 >
-                  chloe@autiostrategies.com
+                  info@autiostrategies.com
                 </a>
               </p>
             </div>

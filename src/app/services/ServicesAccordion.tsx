@@ -58,7 +58,7 @@ const services = [
     id: 'engagement',
     tone: 'tone-engagement',
     title: 'Engagement & Education',
-    tag: '— Outward-facing layer',
+    tag: '— Engagement layer',
     summary: 'Bringing people together, briefing leaders, and building AI fluency where it matters.',
     offerings: [
       {

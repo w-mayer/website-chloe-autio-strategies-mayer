@@ -13,7 +13,7 @@ export default function ServicesPage() {
       <section className="page-hero-wrap">
         <div className="container">
           <div className="breadcrumb">— Our Services</div>
-          <h1>We partner with organizations to navigate AI policy with <em>clarity and conviction.</em></h1>
+          <h1>We partner with organizations<br />to navigate AI policy<br />with <em>clarity and conviction.</em></h1>
           <p className="lede">Shaping substantive positions. Sharpening strategy. Building the internal structures and external relationships that let good decisions about AI scale.</p>
         </div>
       </section>

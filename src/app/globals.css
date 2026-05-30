@@ -164,13 +164,17 @@ body {
 }
 .hero-wrap h1 {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
-  font-weight: 500;
-  /* Restored to design-board size for prominence */
-  font-size: clamp(42px, 5.5vw, 76px);
+  /* Regular weight for Cormorant — 300 is too thin at large sizes */
+  font-weight: 400;
+  /* Middle ground between design-board (42-76) and previous bump (48-86) */
+  font-size: clamp(45px, 5.8vw, 82px);
   line-height: 1.05;
   letter-spacing: -0.02em;
   margin-bottom: 28px;
   color: var(--onyx);
+  /* Narrower cap so the headline reads as a compact column instead of a
+     wide banner — more centered visual feel like the design-board screenshot */
+  max-width: 760px;
 }
 .hero-wrap h1 em { font-style: italic; color: var(--asparagus); font-weight: 700; }
 .hero-sub {
@@ -247,15 +251,17 @@ body {
 .page-hero-wrap .breadcrumb {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
   font-style: italic;
-  font-size: 16px;
-  font-weight: 500;
+  /* Middle ground between 16px (too thin) and 22px (too prominent) */
+  font-size: 18px;
+  font-weight: 700;
   color: var(--asparagus);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 .page-hero-wrap h1 {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
-  font-weight: 500;
-  /* Restored to design-board size */
+  /* Regular weight for Cormorant */
+  font-weight: 400;
+  /* Match design-board size */
   font-size: clamp(40px, 5vw, 64px);
   line-height: 1.08;
   letter-spacing: -0.02em;
@@ -278,6 +284,9 @@ section.block {
   padding: 90px 0;
   background: var(--paper);
 }
+/* Tighten the gap when a .block follows the trusted-by marquee
+   (specifically: Home page "What we do" right after the partner logos). */
+.trusted-section + section.block { padding-top: 30px; }
 
 .block-head-centered {
   text-align: center;
@@ -286,17 +295,18 @@ section.block {
 }
 .block-head-centered .section-eyebrow {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  /* Middle ground between 11px (original) and 22px (doubled) */
+  font-size: 16px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--asparagus);
   font-weight: 700;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 .block-head-centered h2 {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
   font-weight: 500;
-  font-size: clamp(32px, 3.8vw, 48px);
+  font-size: clamp(36px, 4.3vw, 54px);
   line-height: 1.12;
   letter-spacing: -0.015em;
   color: var(--onyx);
@@ -315,6 +325,10 @@ section.block {
 .layers-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  /* Force ALL rows to share the same height (sized by the tallest content),
+     so all four cards have identical width AND height regardless of body
+     paragraph length. */
+  grid-auto-rows: 1fr;
   gap: 20px;
 }
 /* Each card is wrapped in a Next.js Link (renders an <a>). Make the link
@@ -322,7 +336,9 @@ section.block {
 .layers-grid > a { display: block; height: 100%; }
 .layer-card {
   background: var(--paper);
-  padding: 56px 48px 48px;
+  /* Tighter padding: less space between top boundary & first line, and
+     between bottom boundary & "Explore" CTA */
+  padding: 36px 48px 32px;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
   height: 100%;
@@ -346,28 +362,28 @@ section.block {
 .layer-card h3 {
   font-family: var(--font-fraunces), 'Fraunces', serif;
   font-weight: 400;
-  font-size: 24px;
+  /* Slightly bigger than original (24) but not as big as the bumped 30 */
+  font-size: 26px;
   line-height: 1.2;
-  /* Generous gap below the title so the card doesn't feel clustered */
-  margin-bottom: 22px;
+  margin-bottom: 16px;
   color: var(--onyx);
 }
 .layer-card .layer-sub {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
   font-style: italic;
   color: var(--paynes-gray);
-  font-size: 14px;
-  margin-bottom: 32px;
+  font-size: 15px;
+  margin-bottom: 22px;
   line-height: 1.5;
 }
 .layer-card p {
   color: var(--onyx-soft);
-  font-size: 14.5px;
-  line-height: 1.7;
-  margin-bottom: 36px;
+  font-size: 15px;
+  line-height: 1.65;
+  margin-bottom: 26px;
 }
 .layer-card .more {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--asparagus);
@@ -399,17 +415,18 @@ section.block {
   padding: 0 32px;
 }
 .value-add-head .section-eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  /* Middle ground */
+  font-size: 16px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--asparagus);
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 .value-add-head h2 {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
   font-weight: 500;
-  font-size: clamp(32px, 3.8vw, 46px);
+  font-size: clamp(36px, 4.3vw, 52px);
   line-height: 1.12;
   letter-spacing: -0.015em;
   color: var(--onyx);
@@ -670,13 +687,16 @@ section.block {
 /* ============================================ */
 .trusted-section {
   background: var(--paper);
-  padding: 70px 0 90px;
+  /* Reduced bottom padding to close the gap between this section and the
+     "What we do" block that follows on the home page. */
+  padding: 60px 0 40px;
   overflow: hidden;
 }
 .trusted-label {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
   font-style: italic;
-  font-size: 15px;
+  /* Middle ground (was 15px, bumped to 21px, now 18px) */
+  font-size: 18px;
   color: var(--paynes-gray);
   text-align: center;
   margin-bottom: 44px;
@@ -732,6 +752,7 @@ section.block {
 .cta-strip h2 {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
   font-weight: 500;
+  /* Shrunk slightly — was too prominent */
   font-size: clamp(26px, 2.6vw, 34px);
   line-height: 1.25;
   margin-bottom: 24px;
@@ -927,6 +948,7 @@ section.block {
 .closing h2 {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
   font-weight: 500;
+  /* Shrunk slightly — match the cta-strip h2 sizing */
   font-size: clamp(26px, 2.6vw, 34px);
   line-height: 1.25;
   margin: 0 auto 18px;
@@ -977,24 +999,30 @@ section.block {
   margin-bottom: 16px;
 }
 
-.story-block { padding: 90px 0; background: var(--paper); }
+.story-block { padding: 90px 0 50px; background: var(--paper); }
+/* Moderate gap between Our Story and Our Team sections on About */
+.story-block + section.block { padding-top: 50px; }
 .story-block .section-eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  /* Middle ground */
+  font-size: 16px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--asparagus);
   font-weight: 700;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   text-align: center;
 }
 .story-block h2 {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
   font-weight: 500;
-  font-size: clamp(32px, 3.8vw, 44px);
-  line-height: 1.12;
-  letter-spacing: -0.015em;
+  /* Smaller, more comfortable size for the story block */
+  font-size: clamp(28px, 3.4vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   color: var(--onyx);
   margin-bottom: 28px;
+  /* Center under the "Our story" eyebrow which is also centered */
+  text-align: center;
 }
 .story-block h2 em { font-style: italic; color: var(--asparagus); }
 .story-block p {
@@ -1543,16 +1571,13 @@ footer {
 /* These rules win source-order ties against the */
 /* per-component font-family declarations above. */
 /*                                               */
-/* • Cormorant — major page headlines + italic   */
-/*   em accents inside them                      */
-/* • Fraunces — card-internal text + trusted-by  */
-/*   label + small italic labels                 */
-/* • DM Sans — everything else (body, eyebrows,  */
-/*   buttons, nav, form, footer)                 */
+/* • Cormorant — major page headlines + italic em accents             */
+/* • Fraunces — card-internal text + trusted-by label + small labels   */
+/* • DM Sans — body, eyebrows, buttons, nav, form, role labels, footer */
 /* ============================================ */
 
-/* 1) Cormorant — major page-level headlines + em italic accents
-   + page breadcrumbs (Our Services, About Us) + footer tagline */
+/* 1) Cormorant — all major page headlines (including hero banners) +
+   em italic accents + breadcrumbs + footer tagline */
 .hero-wrap h1,
 .hero-wrap h1 em,
 .page-hero-wrap h1,
@@ -1586,6 +1611,7 @@ footer {
 .value-card h4,
 .profile-card h4,
 .team-card h4,
+.team-card .bio,
 .quote-card .q,
 .service-header h3,
 .service-pillar h3,
@@ -1629,3 +1655,34 @@ footer {
 .service-header h3 {
   font-family: var(--font-fraunces), 'Fraunces', Georgia, serif !important;
 }
+
+/* Disable Fraunces stylistic/swash alternates that produce a "squibbly" f
+   and other decorative letterform variants. Forces the base, conventional
+   glyphs everywhere Fraunces is used. */
+.layer-card h3,
+.value-card h4,
+.profile-card h4,
+.team-card h4,
+.team-card .bio,
+.quote-card .q,
+.service-header h3,
+.offering h4,
+.service-pillar h3,
+.pillar h4,
+.trusted-label,
+.layer-tag,
+.layer-card .layer-sub,
+.value-card .num,
+.service-tag,
+.service-summary,
+.story-quote,
+.story-quote-attr,
+.team-mosaic-intro,
+.closing .tag,
+.contact-info-row .lbl {
+  font-feature-settings: "swsh" 0, "cswh" 0, "salt" 0, "ss01" 0, "ss02" 0, "ss03" 0, "ss04" 0, "ss05" 0;
+  font-variant-ligatures: no-discretionary-ligatures;
+}
+
+
+

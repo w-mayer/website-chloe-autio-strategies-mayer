@@ -33,7 +33,7 @@ export const siteContent = {
     name: 'Autio Strategies',
     tagline: 'AI Policy Consulting & Technology Governance',
     description: 'Professional technology governance and regulatory compliance advisory for government and enterprise organizations',
-    email: 'chloe@autiostrategies.com',
+    email: 'info@autiostrategies.com',
     github: 'https://github.com/w-mayer/website-chloe-autio-strategies-mayer',
     website: 'https://autiostrategies.com',
   },
@@ -187,7 +187,7 @@ export const siteContent = {
     builtBy: 'Built by',
     sourceCode: 'The source code is available on',
     contact: {
-      email: { text: 'Email', href: 'mailto:chloe@autiostrategies.com' },
+      email: { text: 'Email', href: 'mailto:info@autiostrategies.com' },
       linkedin: { text: 'LinkedIn', href: 'https://www.linkedin.com/company/autio-strategies' },
       phone: { text: 'Phone', href: 'tel:+12024556599', number: '+1 (202) 455-6599' },
     },

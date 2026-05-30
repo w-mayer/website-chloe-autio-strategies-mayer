@@ -32,7 +32,7 @@ type SocialLink = {
 };
 
 export const socialLinks: SocialLink[] = [
-  { platform: "Email", url: "mailto:chloe@autiostrategies.com" },
+  { platform: "Email", url: "mailto:info@autiostrategies.com" },
 ];
 
 // Contact information
@@ -43,5 +43,5 @@ type ContactInfo = {
 };
 
 export const contactInfo: ContactInfo = {
-  email: "chloe@autiostrategies.com",
+  email: "info@autiostrategies.com",
 }; 
