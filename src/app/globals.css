@@ -1231,10 +1231,13 @@ section.block {
 }
 .contact-left h1 {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
-  font-weight: 500;
-  font-size: clamp(38px, 4.5vw, 56px);
+  /* Middle ground between 44px (small but fit) and 64px (too big, wrapped).
+     Slightly tighter letter-spacing buys back room so "We will help you
+     from there." still fits on one line in the ~514px column. */
+  font-weight: 400;
+  font-size: clamp(34px, 4.2vw, 52px);
   line-height: 1.08;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   margin-bottom: 24px;
   color: var(--onyx);
 }
