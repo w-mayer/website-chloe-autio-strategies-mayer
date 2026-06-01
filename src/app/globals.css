@@ -43,6 +43,18 @@ body {
   overscroll-behavior-x: none;
 }
 
+/* Defensive guard: only the three intended top-level page chrome elements —
+   the sticky nav, the page <main>, and the <footer> — should ever render
+   visibly inside <body>. Any other direct child (Next.js prefetched HTML
+   fragments, route-announcer leftovers, stray DOM from client navigation,
+   etc.) gets hidden. Without this rule, fragments from a previously-visited
+   page (e.g. the home page's "Analysis & Intel" layer-card paragraph
+   ending in "…to inform your decisions.") could surface in a white band
+   below the footer when navigating Home → Services in some browsers. */
+body > *:not(.site-nav-wrap):not(main):not(footer):not(script):not(style):not(link):not(next-route-announcer) {
+  display: none !important;
+}
+
 /* Typography roles defined at the END of this file so they win source-order
    ties against the section-specific rules. See "TYPOGRAPHY ROLES" block below. */
 
