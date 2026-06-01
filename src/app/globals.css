@@ -26,6 +26,13 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+html {
+  /* Prevent horizontal "rubber band" / wiggle on macOS trackpads from
+     revealing whatever sits beneath the body. (We apply it only to html
+     so that sticky elements inside body — like the nav — still work,
+     since overflow-x on body would break position:sticky descendants.) */
+  overflow-x: clip;
+}
 body {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
   background: var(--paper);
@@ -33,6 +40,7 @@ body {
   line-height: 1.6;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
+  overscroll-behavior-x: none;
 }
 
 /* Typography roles defined at the END of this file so they win source-order
@@ -892,7 +900,11 @@ section.block {
   padding: 0;
 }
 .service-item.open .service-body {
-  max-height: 900px;
+  /* Generous cap that accommodates the tallest accordion (Engagement, 4
+     offerings) at narrow viewports where they stack vertically. The previous
+     900px cap clipped content on mobile, which surfaced as fragments of
+     text appearing below the footer in some layouts. */
+  max-height: 3500px;
   padding-bottom: 32px;
 }
 .service-tag {
