@@ -55,6 +55,19 @@ body > *:not(.site-nav-wrap):not(main):not(footer):not(script):not(style):not(li
   display: none !important;
 }
 
+/* Lift the footer into its own stacking context above any phantom overlay
+   (prefetched HTML, stale RSC content, browser-injected elements) that
+   could otherwise paint on top of the copyright row. Ensures both the
+   footer's solid onyx background and the copyright text stay visible. */
+footer {
+  position: relative;
+  z-index: 50;
+  isolation: isolate;
+}
+.footer-bottom {
+  background: var(--onyx);
+}
+
 /* Typography roles defined at the END of this file so they win source-order
    ties against the section-specific rules. See "TYPOGRAPHY ROLES" block below. */
 
