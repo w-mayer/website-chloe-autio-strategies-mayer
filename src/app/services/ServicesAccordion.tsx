@@ -7,7 +7,7 @@ const services = [
     id: 'knowledge',
     tone: 'tone-knowledge',
     title: 'Analysis & Intel',
-    tag: '— Knowledge layer',
+    tag: 'Knowledge layer',
     summary: 'Producing the intelligence and substantive positions your strategy depends on.',
     offerings: [
       {
@@ -24,7 +24,7 @@ const services = [
     id: 'strategy',
     tone: 'tone-strategy',
     title: 'Policy Strategy',
-    tag: '— Strategy layer',
+    tag: 'Strategy layer',
     summary: 'Deciding where to engage, how to sequence it, and where your voice actually lands.',
     offerings: [
       {
@@ -41,7 +41,7 @@ const services = [
     id: 'governance',
     tone: 'tone-governance',
     title: 'Governance & Operations',
-    tag: '— Governance layer',
+    tag: 'Governance layer',
     summary: 'Building the internal machinery and managing the external partners that enable good decisions to scale.',
     offerings: [
       {
@@ -58,7 +58,7 @@ const services = [
     id: 'engagement',
     tone: 'tone-engagement',
     title: 'Engagement & Education',
-    tag: '— Engagement layer',
+    tag: 'Engagement layer',
     summary: 'Bringing people together, briefing leaders, and building AI fluency where it matters.',
     offerings: [
       {
@@ -82,7 +82,9 @@ const services = [
 ];
 
 export default function ServicesAccordion() {
-  const [openId, setOpenId] = useState<string | null>(null);
+  // Multiple services can be open at once. Opening one no longer closes the
+  // others — users must explicitly click the toggle (×) on a service to close it.
+  const [openIds, setOpenIds] = useState(() => new Set<string>());
 
   // Open the matching service if URL hash matches a service id (e.g., /services#knowledge).
   // Also re-checks on hashchange so users can navigate between services without a reload.
@@ -91,7 +93,12 @@ export default function ServicesAccordion() {
       if (typeof window === 'undefined') return;
       const hash = window.location.hash.replace('#', '');
       if (services.some(s => s.id === hash)) {
-        setOpenId(hash);
+        setOpenIds(prev => {
+          if (prev.has(hash)) return prev;
+          const next = new Set(prev);
+          next.add(hash);
+          return next;
+        });
         setTimeout(() => {
           document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 80);
@@ -102,22 +109,29 @@ export default function ServicesAccordion() {
     return () => window.removeEventListener('hashchange', checkHash);
   }, []);
 
-  const toggle = (id: string) => setOpenId(prev => prev === id ? null : id);
+  const toggle = (id: string) => setOpenIds(prev => {
+    const next = new Set(prev);
+    if (next.has(id)) next.delete(id);
+    else next.add(id);
+    return next;
+  });
 
   return (
     <div className="services-list">
-      {services.map(svc => (
-        <div key={svc.id} id={svc.id} className={`service-item ${svc.tone}${openId === svc.id ? ' open' : ''}`}>
+      {services.map(svc => {
+        const isOpen = openIds.has(svc.id);
+        return (
+        <div key={svc.id} id={svc.id} className={`service-item ${svc.tone}${isOpen ? ' open' : ''}`}>
           <div
               className="service-header"
               onClick={() => toggle(svc.id)}
               onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && toggle(svc.id)}
               role="button"
               tabIndex={0}
-              aria-expanded={openId === svc.id}
+              aria-expanded={isOpen}
             >
             <h3>{svc.title}</h3>
-            <button className="service-toggle" aria-label={openId === svc.id ? 'Collapse' : 'Expand'}>+</button>
+            <button className="service-toggle" aria-label={isOpen ? 'Collapse' : 'Expand'}>+</button>
           </div>
           <div className="service-body">
             <div className="service-tag">{svc.tag}</div>
@@ -132,7 +146,8 @@ export default function ServicesAccordion() {
             </div>
           </div>
         </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

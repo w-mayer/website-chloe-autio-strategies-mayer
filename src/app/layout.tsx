@@ -26,7 +26,10 @@ const cormorant = Cormorant({
 // read better at the smaller sizes used inside contained UI elements.
 const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  // Load Fraunces as a true variable font so CSS font-weight values between the
+  // named instances (e.g. 350) are interpolated by the browser rather than
+  // snapping to the nearest static weight.
+  axes: ["opsz", "SOFT", "WONK"],
   style: ["normal", "italic"],
   variable: "--font-fraunces",
   display: "swap",

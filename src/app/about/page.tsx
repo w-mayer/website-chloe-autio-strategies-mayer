@@ -24,7 +24,7 @@ export default function AboutPage() {
     <>
       <section className="page-hero-wrap">
         <div className="container">
-          <div className="breadcrumb">— About Us</div>
+          <div className="breadcrumb">About Us</div>
           <h1>Built at the intersection<br />of <em>technology and policy.</em></h1>
           <p className="lede">Autio Strategies brings over a decade of global experience supporting stakeholders across industries to keep up — and make the most — of AI evolution.</p>
         </div>

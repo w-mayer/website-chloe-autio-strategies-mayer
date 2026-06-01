@@ -19,7 +19,7 @@
   --border-soft:  #ECEAE0;
 
   --container:    1140px;
-  --container-wide: 1340px;
+  --container-wide: 1520px;
   --container-narrow: 880px;
   --nav-height:   88px;
 }
@@ -250,10 +250,9 @@ body {
 }
 .page-hero-wrap .breadcrumb {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
-  font-style: italic;
-  /* Middle ground between 16px (too thin) and 22px (too prominent) */
-  font-size: 18px;
-  font-weight: 700;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 400;
   color: var(--asparagus);
   margin-bottom: 20px;
 }
@@ -372,13 +371,13 @@ section.block {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
   font-style: italic;
   color: var(--paynes-gray);
-  font-size: 15px;
+  font-size: 16.5px;
   margin-bottom: 22px;
   line-height: 1.5;
 }
 .layer-card p {
   color: var(--onyx-soft);
-  font-size: 15px;
+  font-size: 16.5px;
   line-height: 1.65;
   margin-bottom: 26px;
 }
@@ -447,7 +446,7 @@ section.block {
   background: var(--paper);
   border: 1px solid var(--border-soft);
   border-radius: 10px;
-  padding: 36px 28px;
+  padding: 36px 24px;
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
 .value-card:hover {
@@ -473,7 +472,7 @@ section.block {
 }
 .value-card p {
   color: var(--onyx-soft);
-  font-size: 14.5px;
+  font-size: 16px;
   line-height: 1.65;
 }
 
@@ -694,7 +693,7 @@ section.block {
 }
 .trusted-label {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
-  font-style: italic;
+  font-style: normal;
   /* Middle ground (was 15px, bumped to 21px, now 18px) */
   font-size: 18px;
   color: var(--paynes-gray);
@@ -898,19 +897,22 @@ section.block {
 }
 .service-tag {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
-  font-style: italic;
-  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
   color: var(--paynes-gray);
   margin-bottom: 12px;
 }
 .service-summary {
-  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+  font-family: var(--font-fraunces), 'Fraunces', Georgia, serif;
   font-style: italic;
-  font-size: 18px;
+  font-weight: 350;
+  font-size: 17px;
   color: var(--paynes-gray);
   line-height: 1.5;
   margin-bottom: 22px;
-  max-width: 720px;
+  /* Widened from 720 so the long Governance summary fits on a single line. */
+  max-width: 1120px;
 }
 .service-offerings {
   display: grid;
@@ -925,13 +927,13 @@ section.block {
 .offering h4 {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 20px;
   color: var(--onyx);
   margin-bottom: 12px;
   letter-spacing: -0.005em;
 }
 .offering p {
-  font-size: 14.5px;
+  font-size: 16px;
   color: var(--onyx-soft);
   line-height: 1.7;
 }
@@ -1603,28 +1605,26 @@ footer {
 .newsletter h3 em,
 .contact-form h3,
 .contact-form h3 em,
-.page-hero-wrap .breadcrumb,
 .footer-blurb {
   font-family: var(--font-cormorant), 'Cormorant', Georgia, serif;
 }
 
-/* 2) Fraunces — card-internal headlines, profile/team names, layer & value
-   card titles, services accordion titles, plus small italic labels */
+/* 2) Fraunces — card-internal headlines, profile/team names, layer card
+   titles, services accordion titles, plus small italic labels. Value-card
+   titles use Cormorant bold (handled by per-component rules); bios use
+   DM Sans (handled below). */
 .layer-card h3,
 .value-card h4,
 .profile-card h4,
 .team-card h4,
-.team-card .bio,
 .quote-card .q,
 .service-header h3,
 .service-pillar h3,
 .offering h4,
 .pillar h4,
-.trusted-label,
 .layer-tag,
 .layer-card .layer-sub,
 .value-card .num,
-.service-tag,
 .service-summary,
 .story-quote,
 .story-quote-attr,
@@ -1666,17 +1666,14 @@ footer {
 .value-card h4,
 .profile-card h4,
 .team-card h4,
-.team-card .bio,
 .quote-card .q,
 .service-header h3,
 .offering h4,
 .service-pillar h3,
 .pillar h4,
-.trusted-label,
 .layer-tag,
 .layer-card .layer-sub,
 .value-card .num,
-.service-tag,
 .service-summary,
 .story-quote,
 .story-quote-attr,
@@ -1687,5 +1684,18 @@ footer {
   font-variant-ligatures: no-discretionary-ligatures;
 }
 
+/* Value-card titles (Specialized expertise / From SF to DC / etc.) — Fraunces,
+   matching the deployed site. Fraunces reads thicker and clearer than
+   Cormorant at the same weight. */
+.value-card h4 {
+  font-family: var(--font-fraunces), 'Fraunces', Georgia, serif !important;
+  font-weight: 500;
+}
 
-
+/* About-page team bios — DM Sans, aligned with the rest of the body sans on
+   the site. Overrides the earlier Fraunces assignment. */
+.team-card .bio {
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif !important;
+  font-feature-settings: normal;
+  font-variant-ligatures: normal;
+}
