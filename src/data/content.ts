@@ -109,6 +109,30 @@ export const siteContent = {
         alt: 'Uber Logo',
         size: 'standard'
       },
+      { 
+        name: 'CDAO', 
+        image: '/images/partner_logos/optimized/CDAO-Logo.webp',
+        alt: 'CDAO Logo',
+        size: 'standard'
+      },
+      { 
+        name: 'Hupside', 
+        image: '/images/partner_logos/optimized/Hupside-Logo.webp',
+        alt: 'Hupside Logo',
+        size: 'standard'
+      },
+      { 
+        name: 'ITI', 
+        image: '/images/partner_logos/optimized/ITI-Logo.webp',
+        alt: 'ITI Logo',
+        size: 'standard'
+      },
+      { 
+        name: 'OpenAI', 
+        image: '/images/partner_logos/optimized/OpenAI-Mark.webp',
+        alt: 'OpenAI Logo',
+        size: 'standard'
+      },
     ],
   },
 

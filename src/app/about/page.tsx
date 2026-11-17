@@ -17,6 +17,10 @@ const partnerLogos = [
   { src: '/images/partner_logos/optimized/OCED.webp', alt: 'OECD' },
   { src: '/images/partner_logos/optimized/Uber_logo_2018.webp', alt: 'Uber' },
   { src: '/images/partner_logos/optimized/f_nist-logo-brand-black.webp', alt: 'NIST' },
+  { src: '/images/partner_logos/optimized/CDAO-Logo.webp', alt: 'Chief Digital and Artificial Intelligence Office' },
+  { src: '/images/partner_logos/optimized/Hupside-Logo.webp', alt: 'Hupside' },
+  { src: '/images/partner_logos/optimized/ITI-Logo.webp', alt: 'ITI' },
+  { src: '/images/partner_logos/optimized/OpenAI-Mark.webp', alt: 'OpenAI' },
 ];
 
 export default function AboutPage() {

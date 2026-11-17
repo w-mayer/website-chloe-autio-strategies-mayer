@@ -730,7 +730,7 @@ section.block {
   display: flex;
   gap: 80px;
   width: max-content;
-  animation: scroll-left 40s linear infinite;
+  animation: scroll-left 60s linear infinite;
 }
 .marquee:hover .marquee-track { animation-play-state: paused; }
 @keyframes scroll-left {
@@ -758,7 +758,10 @@ section.block {
 .logo-tile img[alt="OECD"]                    { height: 50px; }  /* wide circle+text */
 .logo-tile img[alt="Uber"]                    { height: 32px; }  /* bold dominant wordmark */
 .logo-tile img[alt="NIST"]                    { height: 76px; }  /* wide wordmark+text */
-.logo-tile img[alt="OpenAI"]                  { height: 72px; }  /* bold wordmark + ~45% content (whitespace in file) */
+.logo-tile img[alt="Chief Digital and Artificial Intelligence Office"] { height: 70px; }
+.logo-tile img[alt="Hupside"]                 { height: 54px; }
+.logo-tile img[alt="ITI"]                     { height: 72px; }
+.logo-tile img[alt="OpenAI"]                  { height: 84px; }
 
 /* ============================================ */
 /* CTA STRIP                                    */
@@ -1511,7 +1514,10 @@ footer {
   .logo-tile img[alt="OECD"]                    { height: 32px; }
   .logo-tile img[alt="Uber"]                    { height: 20px; }
   .logo-tile img[alt="NIST"]                    { height: 48px; }
-  .logo-tile img[alt="OpenAI"]                  { height: 46px; }
+  .logo-tile img[alt="Chief Digital and Artificial Intelligence Office"] { height: 44px; }
+  .logo-tile img[alt="Hupside"]                 { height: 34px; }
+  .logo-tile img[alt="ITI"]                     { height: 46px; }
+  .logo-tile img[alt="OpenAI"]                  { height: 54px; }
   .quote-card { padding: 32px 28px; }
   .team-mosaic-row2 { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
@@ -1559,7 +1565,10 @@ footer {
   .logo-tile img[alt="OECD"]                    { height: 24px; }
   .logo-tile img[alt="Uber"]                    { height: 16px; }
   .logo-tile img[alt="NIST"]                    { height: 36px; }
-  .logo-tile img[alt="OpenAI"]                  { height: 34px; }
+  .logo-tile img[alt="Chief Digital and Artificial Intelligence Office"] { height: 34px; }
+  .logo-tile img[alt="Hupside"]                 { height: 26px; }
+  .logo-tile img[alt="ITI"]                     { height: 34px; }
+  .logo-tile img[alt="OpenAI"]                  { height: 40px; }
   .trusted-label { font-size: 13px; padding: 0 16px; margin-bottom: 32px; }
   .trusted-section { padding: 40px 0 50px; }
   /* Image block in team mosaic — shrink min-height so it doesn't dominate on phones */
