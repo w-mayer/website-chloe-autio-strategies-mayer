@@ -1,26 +1,27 @@
 import Link from 'next/link';
 import ServicesAccordion from './ServicesAccordion';
+import { pageMetadata } from '@/lib/page-metadata';
 
-export const metadata = {
-  title: 'Services — Autio Strategies',
-  description: 'AI policy and governance services: analysis & intel, policy strategy, governance & operations, and engagement & education.',
-};
+export const metadata = pageMetadata(
+  'Services | Autio Strategies',
+  'Analysis, strategy, governance, and engagement for organizations navigating AI policy and regulation.',
+  '/services',
+);
 
 export default function ServicesPage() {
   return (
-    <>
+    <div className="page-services">
       {/* PAGE HERO */}
       <section className="page-hero-wrap">
         <div className="container">
-          <div className="breadcrumb">Our Services</div>
-          <h1>We partner with organizations<br />to navigate AI policy<br />with <em>clarity and conviction.</em></h1>
-          <p className="lede">Shaping substantive positions. Sharpening strategy. Building the internal structures and external relationships that let good decisions about AI scale.</p>
+          <h1>Navigate AI policy<br />with <em>clarity and conviction.</em></h1>
+          <p className="lede">We shape substantive positions and sharpen strategy. We build the structures that let good decisions about AI scale, and we bring the right people together and up to speed.</p>
         </div>
       </section>
 
       {/* ACCORDION */}
       <section className="block">
-        <div className="container-wide">
+        <div className="container">
           <ServicesAccordion />
         </div>
       </section>
@@ -34,6 +35,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

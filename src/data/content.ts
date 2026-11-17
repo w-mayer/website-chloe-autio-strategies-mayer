@@ -68,12 +68,6 @@ export const siteContent = {
         size: 'extra-large'
       },
       { 
-        name: 'Department of Defense', 
-        image: '/images/partner_logos/optimized/DoD-Logo-Stacked.webp',
-        alt: 'Department of Defense Logo',
-        size: 'large'
-      },
-      { 
         name: 'NIST', 
         image: '/images/partner_logos/optimized/f_nist-logo-brand-black.webp',
         alt: 'NIST Logo',

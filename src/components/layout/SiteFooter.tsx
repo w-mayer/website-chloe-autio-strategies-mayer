@@ -9,7 +9,7 @@ export default function SiteFooter() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="footer-logo"
-              src="/images/logo/optimized/AutioStrategies_Logo_AllWhite_Horz.webp"
+              src="/images/logo/optimized/autio-strategies-logo-white.webp"
               alt="Autio Strategies"
             />
             <div className="footer-blurb">Helping organizations navigate AI&rsquo;s evolution with confidence.</div>

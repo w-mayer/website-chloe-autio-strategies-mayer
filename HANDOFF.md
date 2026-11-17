@@ -3,7 +3,7 @@
 ## Stack at a glance
 
 - **Framework:** Next.js (App Router) with TypeScript, exported as static HTML
-- **Styling:** Tailwind CSS + shadcn-style CSS variables; DM Sans (Google Fonts)
+- **Styling:** Tailwind CSS + shadcn-style CSS variables; Fraunces + DM Sans (Google Fonts)
 - **Repo:** `github.com/w-mayer/website-chloe-autio-strategies-mayer`
 - **Hosting:** Netlify (auto-deploys from `main`)
 - **Forms:** Netlify Forms
@@ -52,7 +52,7 @@ public/images/          # all images (use /optimized/*.webp paths)
 | Top nav links                                                     | `content.ts` → `navigation.items`                                                                                                                     |
 | Homepage hero (title, subtitle, buttons, background)              | `pages/home.ts`                                                                                                                                       |
 | Homepage testimonials, value-prop cards, "Ready to Transform" CTA | `content.ts`                                                                                                                                          |
-| Partner logos (homepage strip)                                    | `content.ts` → `clientLogos.logos` (drop new `.webp` into `/public/images/partner_logos/optimized/`)                                                  |
+| Partner logos (homepage strip)                                    | `src/app/page.tsx` → `partnerLogos` (drop the `.webp` into `/public/images/partner_logos/optimized/`; set its display height in `globals.css` under `.logo-tile img[data-logo="…"]`) |
 | About page "What we do" paragraph                                 | `pages/about.ts` → `body.description`                                                                                                                 |
 | Team bios + headshots                                             | `pages/about.ts` → `team.{chloe,samuel,chaerin}`                                                                                                      |
 | A service offering (copy, benefits, methodology, detail bullets)  | `services.ts`                                                                                                                                         |
@@ -70,7 +70,8 @@ After adding any new image, run `npm run optimize-images` (or `optimize-headshot
 - **Tailwind config:** `tailwind.config.ts` — defines brand colors and design tokens
 - **Brand palette:** Green `#6F9C3B` (primary), Payne's Gray `#455D6A`, plus Eggshell, Vanilla, Ash Gray, Pale Dogwood
 - **Theme variables:** `src/app/globals.css` — CSS variables for `--background`, `--primary`, `--border`, etc., used by shadcn-style components. Edit colors here OR in `tailwind.config.ts` (kept in sync)
-- **Font:** DM Sans, loaded in `src/app/layout.tsx`
+- **Fonts:** Fraunces for headings and display text, DM Sans for body, navigation and buttons — both loaded in `src/app/layout.tsx`
+- **Page titles, descriptions, share image:** set per page with `pageMetadata()` (`src/lib/page-metadata.ts`); the share image is `/public/images/autio-strategies-share-image.png`
 - **Typography & spacing:** use Tailwind utility classes in components
 
 ## Forms (Netlify)

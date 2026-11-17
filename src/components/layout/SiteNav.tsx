@@ -34,7 +34,7 @@ export default function SiteNav() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="logo-img"
-              src="/images/logo/optimized/AutioStrategies_Logo_FullColor_Horz (1).webp"
+              src="/images/logo/optimized/autio-strategies-logo-color.webp"
               alt="Autio Strategies"
             />
           </Link>

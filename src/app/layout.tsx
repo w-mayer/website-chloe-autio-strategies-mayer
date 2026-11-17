@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Cormorant, Fraunces } from "next/font/google";
+import { DM_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
 import SiteNav from "@/components/layout/SiteNav";
 import SiteFooter from "@/components/layout/SiteFooter";
@@ -11,33 +11,31 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const cormorant = Cormorant({
-  subsets: ["latin"],
-  // Skipping 300 (too thin). Loading 500/600/700 so we can bump weights
-  // selectively where Cormorant's base needs more visual weight to read well.
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-cormorant",
-  display: "swap",
-});
-
-// Fraunces is used SPECIFICALLY for text inside cards (layer-card, profile-card,
-// team-card, quote-card, value-card, service-item) — its sturdier letterforms
-// read better at the smaller sizes used inside contained UI elements.
+// Fraunces: headings and display text. DM Sans (above): body, navigation, buttons.
 const fraunces = Fraunces({
   subsets: ["latin"],
-  // Load Fraunces as a true variable font so CSS font-weight values between the
-  // named instances (e.g. 350) are interpolated by the browser rather than
-  // snapping to the nearest static weight.
-  axes: ["opsz", "SOFT", "WONK"],
+  // Variable font with the optical-size axis, matching the design board.
+  axes: ["opsz"],
   style: ["normal", "italic"],
   variable: "--font-fraunces",
   display: "swap",
 });
 
+const siteTitle = "Autio Strategies | AI Policy and Governance Advisory";
+const siteDescription = "Autio Strategies is a boutique advisory firm helping startups, enterprises, governments, and nonprofits navigate AI policy and governance, drawing on a decade of experience across tech and government.";
+
+// Shared by every page. Next.js replaces (rather than merges) the openGraph
+// object when a page sets its own, so pages spread this in via pageMetadata().
+const shareImage = {
+  url: "/images/autio-strategies-share-image.png",
+  width: 1200,
+  height: 630,
+  alt: "Autio Strategies",
+};
+
 export const metadata: Metadata = {
-  title: "Autio Strategies",
-  description: "Navigate AI evolution with confidence. A decade of global experience helping labs, enterprises, governments, and intergovernmental bodies keep up with — and make the most of — how AI is reshaping their work.",
+  title: siteTitle,
+  description: siteDescription,
   keywords: ["AI policy", "AI governance", "technology policy", "government affairs", "regulatory strategy", "responsible AI"],
   authors: [{ name: "Autio Strategies" }],
   icons: {
@@ -46,12 +44,19 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   openGraph: {
-    title: "Autio Strategies",
-    description: "Navigate AI evolution with confidence. Partnership-focused. Premier guidance. Wherever you are on the journey.",
+    title: siteTitle,
+    description: siteDescription,
     url: "https://autiostrategies.com",
     siteName: "Autio Strategies",
     locale: "en_US",
     type: 'website',
+    images: [shareImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
+    images: [shareImage.url],
   },
   metadataBase: new URL("https://autiostrategies.com"),
   alternates: {
@@ -70,7 +75,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${cormorant.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`${dmSans.variable} ${fraunces.variable}`}>
       <head>
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
@@ -85,7 +90,7 @@ export default function RootLayout({
               '@type': 'Organization',
               name: 'Autio Strategies',
               url: 'https://autiostrategies.com',
-              description: 'AI policy consulting, governance strategy, and regulatory advisory for labs, enterprises, and governments.',
+              description: 'A boutique advisory firm helping startups, enterprises, governments, and nonprofits navigate AI policy and governance.',
               contactPoint: [{
                 '@type': 'ContactPoint',
                 email: 'info@autiostrategies.com',
